@@ -3,7 +3,7 @@ use std::str::FromStr;
 use base64::Engine;
 use binary_util::{ByteReader, ByteWriter};
 use binary_util::interfaces::{Reader, Writer};
-use hmac::{Hmac, KeyInit};
+use hmac::{Hmac, Mac};
 use jwt::{Header, Token, VerifyWithKey};
 use serde_json::Value;
 use sha2::Sha384;
