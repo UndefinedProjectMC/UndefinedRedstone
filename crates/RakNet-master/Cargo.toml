@@ -1,0 +1,30 @@
+[package]
+name = "rak-rs"
+version = "0.3.3"
+authors = ["John Bergman <olybear9@gmail.com>"]
+edition = "2021"
+description = "A fully functional RakNet implementation in pure rust, asynchronously driven."
+license = "Apache-2.0"
+repository = "https://github.com/NetrexMC/RakNet"
+
+[package.metadata.docs.rs]
+rustdoc-args = ["--html-in-header", "./resources/header.html"]
+
+[features]
+default = [ "async_std" ]
+# default = ["async_tokio" ]
+mcpe = []
+debug = []
+debug_all = []
+debug_buffers = []
+async_std = [ "async-std" ]
+async_tokio = [ "tokio" ]
+
+[dependencies]
+rand = "0.8.3"
+binary-util = "0.3.4"
+tokio = { version = "1.28.2", features = ["full"], optional = true }
+byteorder = "1.4.3"
+futures = "0.3.19"
+futures-executor = "0.3.19"
+async-std = { version = "1.12.0", optional = true, features = [ "unstable" ] }

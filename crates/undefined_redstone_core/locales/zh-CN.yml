@@ -1,0 +1,9 @@
+_version: 1
+console.startup: "欢迎使用 [Undefined RedStone - 界游服务端] 版本号: %{version}"
+console.warning: "警告: 此服务端为UndefinedLand服务器专用, 未经允许禁止分发."
+console.resource_pack: "[加载资源包] 已加载 %{count} 个资源包"
+console.behavior_pack: "[加载资源包] 已加载 %{count} 个行为包"
+console.level: "[世界生成] 已生成 %{level} 世界"
+console.ipv4: "[网络初始化] 已开放Ipv4端口: %{port}"
+console.ipv6: "[网络初始化] 已开放Ipv6端口: %{port}"
+console.finish: "服务端已启动完成(耗时: %{ms}ms). 输入 /help 查看我的世界指令帮助, 输入 :help 查看服务端指令帮助."

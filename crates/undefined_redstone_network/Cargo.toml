@@ -1,0 +1,11 @@
+[package]
+name = "undefined_redstone_network"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rak-rs = { path = "../RakNet-master", default-features = false, features = ["async_tokio", "mcpe"] }
+bevy_ecs = "0.14.0"
+bevy_app = "0.14.0"
+tokio = "1.38.0"
+rand = "0.8.5"

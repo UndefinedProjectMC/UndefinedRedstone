@@ -1,0 +1,13 @@
+[package]
+name = "undefined_redstone_packloader"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+undefined_redstone_type = { path = "../undefined_redstone_type" }
+serde_json = "1.0"
+uuid = "*"
+bevy_ecs = "0.14.0"
+serde = { version = "1.0.203", features = ["derive"] }
+serde-inline-default = "0.2"
+regex = "*"
