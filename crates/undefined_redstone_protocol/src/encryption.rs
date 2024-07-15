@@ -81,22 +81,35 @@ impl MinecraftEncryption {
 pub struct MinecraftPacketEncryption {
     send_count: u32,
     receive_count: u32,
-    encrypt_cipher: Option<CipherCtx>,
-    decrypt_cipher: Option<CipherCtx>,
+    encrypt_cipher: CipherCtx,
+    decrypt_cipher: CipherCtx,
     secret_key: Vec<u8>,
-    protocol_version: u32
 }
 
 impl MinecraftPacketEncryption {
-    pub fn new(protocol_version: u32) -> Self {
-        Self {
+    pub fn new(secret_key: Vec<u8>, protocol_version: u32) -> anyhow::Result<Self> {
+        let cipher = Self::get_cipher(protocol_version);
+        let temp = secret_key.clone();
+        let key_leak = temp.leak();
+
+        let iv = Self::get_iv(key_leak, protocol_version);
+        let mut cipher_ctx = CipherCtx::new()?;
+        cipher_ctx.set_padding(false);
+        cipher_ctx.decrypt_init(Some(cipher), Some(key_leak), Some(iv))?;
+        let decrypt_cipher = cipher_ctx;
+
+        let mut cipher_ctx = CipherCtx::new()?;
+        cipher_ctx.set_padding(false);
+        cipher_ctx.encrypt_init(Some(cipher), Some(key_leak), Some(iv))?;
+        let encrypt_cipher = cipher_ctx;
+
+        Ok(Self {
             send_count: 0,
             receive_count: 0,
-            encrypt_cipher: None,
-            decrypt_cipher: None,
-            secret_key: vec![],
-            protocol_version,
-        }
+            encrypt_cipher,
+            decrypt_cipher,
+            secret_key,
+        })
     }
     fn get_cipher(protocol_version: u32) -> &'static CipherRef {
         if protocol_version < 428 {//当协议版本低于428时
@@ -106,8 +119,7 @@ impl MinecraftPacketEncryption {
         }
     }
 
-    fn get_iv(&self, protocol_version: u32) -> &'static [u8] {
-        let secret_key = self.secret_key.clone();
+    fn get_iv(secret_key: &[u8], protocol_version: u32) -> &'static [u8] {
         if protocol_version < 428 {//当协议版本低于428时
             let mut temp = secret_key[0..16].to_vec();
             temp.leak()
@@ -117,26 +129,6 @@ impl MinecraftPacketEncryption {
             temp[15] = 2;
             temp.leak()
         }
-    }
-
-    pub fn init(&mut self, secret_key: Vec<u8>) -> Result<(), io::Error> {
-        let cipher = Self::get_cipher(self.protocol_version);
-        self.secret_key = secret_key.clone();
-        let secret_key = secret_key.clone();
-        let secret_key = secret_key.leak();
-        let iv = self.get_iv(self.protocol_version);
-        println!("iv: {:?}", iv.to_vec());
-        let mut cipher_ctx = CipherCtx::new().map_err(|error| io::Error::other(error))?;
-        cipher_ctx.set_padding(false);
-        cipher_ctx.decrypt_init(Some(cipher), Some(secret_key), Some(iv)).map_err(|error| io::Error::other(error))?;
-        self.decrypt_cipher = Some(cipher_ctx);
-
-        let mut cipher_ctx = CipherCtx::new().map_err(|error| io::Error::other(error))?;
-        cipher_ctx.set_padding(false);
-        cipher_ctx.encrypt_init(Some(cipher), Some(secret_key), Some(iv)).map_err(|error| io::Error::other(error))?;
-        self.encrypt_cipher = Some(cipher_ctx);
-        println!("init ok");
-        return Ok(())
     }
 
     fn compute_checksum(&self, bytes: &[u8], send_count: u32) -> Vec<u8> {
@@ -154,7 +146,6 @@ impl MinecraftPacketEncryption {
         let mut packet = Vec::new();
         {
             let mut cipher_ctx = &mut self.decrypt_cipher;
-            let mut cipher_ctx = cipher_ctx.as_mut().ok_or(io::Error::other("cannot get cipher"))?;
 
             //解密
             cipher_ctx.cipher_update_vec(bytes, &mut packet).map_err(|error| io::Error::other(error))?;
@@ -183,7 +174,6 @@ impl MinecraftPacketEncryption {
         //加密
         {
             let mut cipher_ctx = &mut self.encrypt_cipher;
-            let mut cipher_ctx = cipher_ctx.as_mut().ok_or(io::Error::other("cannot get cipher"))?;
             cipher_ctx.cipher_update_vec(bytes.as_slice(), &mut output).map_err(|error| io::Error::other(error))?;
         }
         Ok(output)

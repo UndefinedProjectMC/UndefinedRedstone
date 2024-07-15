@@ -6,6 +6,7 @@ use rust_i18n::t;
 use tokio::runtime::Runtime;
 use undefined_redstone_network::URNetworkSettingsInner;
 use undefined_redstone_protocol::ProtocolInfo;
+use undefined_redstone_protocol::server::handshake::CompressionAlgorithm;
 use undefined_redstone_type::minecraft_version::{MinecraftVersion, MinecraftVersions};
 use undefined_redstone_type::protocol_versions::MinecraftProtocolVersions;
 use crate::server::Server;
@@ -40,10 +41,16 @@ pub(crate) fn init_protocol() {
 }
 
 pub(crate) fn init_network_settings(mut commands: Commands, server_properties: Res<ServerProperties>) {
+    let compression_algorithm = if server_properties.enable_snappy {
+        CompressionAlgorithm::Snappy
+    } else {
+        CompressionAlgorithm::Zlib
+    };
     commands.insert_resource(URNetworkSettingsInner::new(
         Runtime::new().unwrap(),
         server_properties.ipv4_port,
         server_properties.to_motd(),
+        compression_algorithm
     ));
 }
 
