@@ -2,6 +2,8 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{Error, Read};
 use std::ops::DerefMut;
+use std::path::PathBuf;
+use chrono::Local;
 use sha2::Digest;
 use zip::read::ZipFile;
 use zip::result::{ZipError, ZipResult};
@@ -24,33 +26,28 @@ fn get_file_by_name<'a>(zip: &'a mut ZipArchive<File>, path: &'static str) -> Zi
     zip.by_name(x)
 }
 
-fn get_dir_files(zip: &mut ZipArchive<File>, dir_path: &'static str) -> Vec<String> {
-    //转移所有权, 防止出现重复引用
-    let names = {
-        zip.file_names().collect::<Vec<&str>>()
-            .iter()
-            .map(|str| {
-                str.to_string()
-            })
-            .collect::<Vec<String>>()
-    };
+fn get_dir_files(zip: &mut ZipArchive<File>, dir_path: &str) -> Vec<String> {
     let mut vec = vec![];
-    for name in names {
-        let split: Vec<&str> = name.split("/").collect();
-        if split.len() > 1 {
-            let str = split[..split.len() - 1].join("/");
-            if str.eq_ignore_ascii_case(dir_path) {
-                if let Ok(mut file) = zip.by_name(&name) {
-                    if file.is_file() {
-                        let mut str = String::new();
-                        if let Ok(_) = file.read_to_string(&mut str) {
-                            vec.push(str)
-                        }
+    // 转移所有权, 防止出现重复引用
+    let name = zip.file_names().map(|str| {
+        str.to_owned()
+    }).collect::<Vec<String>>();
+    name.iter().map(|name| PathBuf::from(name))
+        .filter(|path| path.components().count() > 1) //直接过滤掉不符合条件的路径
+        .filter(|path| {
+            let parent = path.parent().unwrap();
+            parent.to_str().unwrap().eq_ignore_ascii_case(dir_path)
+        })
+        .for_each(|path_buf| {
+            if let Ok(mut file) = zip.by_name(path_buf.to_str().unwrap()) {
+                if file.is_file() {
+                    let mut str = String::new();
+                    if let Ok(_) = file.read_to_string(&mut str) {
+                        vec.push(str);
                     }
                 }
             }
-        }
-    }
+        });
     vec
 }
 
@@ -61,7 +58,8 @@ impl ZippedResourcePack {
             let mut str = String::new();
             manifest.read_to_string(&mut str).ok()?;
             let manifest_json: ResourcePackManifestJson = serde_json::from_str(str.as_str()).unwrap();
-            manifest_json.to_manifest().ok()
+            let result = manifest_json.to_manifest().ok();
+            result
         }else {
             return None
         }

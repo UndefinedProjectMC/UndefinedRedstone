@@ -1,6 +1,7 @@
 use std::fs;
 use std::io::Read;
 use std::path::{Path, PathBuf};
+use chrono::Local;
 use crate::pack::ResourcePack;
 use crate::pack_loader::pack::zipped::ZippedResourcePack;
 use crate::pack_loader::PackLoaderTrait;
@@ -42,7 +43,9 @@ impl PackLoaderTrait for ResourcePackZippedLoader {
                                 if let Ok(mut file) = fs::File::open(entry.path()) {
                                     let mut bytes = vec![];
                                     if let Ok(_) = file.read_to_end(&mut bytes) {
+                                        let start = Local::now().timestamp_millis();
                                         if let Ok(mut zip) = zip::ZipArchive::new(file) {
+                                            let end = Local::now().timestamp_millis();
                                             if let Some(resource_pack) = ZippedResourcePack::get_resource_pack(&mut zip, bytes) {
                                                 resource_packs.push(resource_pack)
                                             }
