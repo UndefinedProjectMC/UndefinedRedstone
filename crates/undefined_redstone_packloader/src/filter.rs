@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 #[serde(untagged)]
 pub enum MinecraftFilterType {
     Filter(MinecraftFilter),
@@ -20,7 +20,7 @@ impl Default for MinecraftFilterType {
     }
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct MinecraftFilter {
     #[serde(default)]
     pub all_of: Vec<Self>,

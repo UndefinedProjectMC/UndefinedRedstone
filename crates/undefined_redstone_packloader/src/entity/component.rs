@@ -16,14 +16,14 @@ use bevy_ecs::prelude::EntityWorldMut;
  https://learn.microsoft.com/zh-cn/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable
 */
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AddRider {
     pub entity_type: String,
     pub spawn_event: String,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AdmireItem {
     #[serde(default)]
     pub cooldown_after_being_attacked: i32,
@@ -31,13 +31,13 @@ pub struct AdmireItem {
     pub duration: i32
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Ageable {
     pub cooldown_after_being_attacked: i32,
     pub duration: i32
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct AmbientSoundIntervalEventNames {
     #[serde(default)]
     pub event_name: String,
@@ -46,7 +46,7 @@ pub struct AmbientSoundIntervalEventNames {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AmbientSoundInterval {
     #[serde_inline_default("ambient".to_string())]
     event_name: String,
@@ -58,14 +58,14 @@ pub struct AmbientSoundInterval {
     value: f64,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct AngerLevelSound {
     pub sound: String,
     pub condition: String,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AngerLevel {
     #[serde_inline_default(1.0)]
     pub anger_decrement_interval: f64,
@@ -88,7 +88,7 @@ pub struct AngerLevel {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Angry {
     #[serde(default)]
     pub angry_sound: String,
@@ -117,7 +117,7 @@ pub struct Angry {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AnnotationBreakDoor {
     #[serde_inline_default(12.0)]
     pub break_time: f64,
@@ -125,11 +125,11 @@ pub struct AnnotationBreakDoor {
     pub min_difficulty: String,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AnnotationOpenDoor {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AreaAttack {
     #[serde(default)]
     pub cause: String,
@@ -142,7 +142,7 @@ pub struct AreaAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Attack {
     pub damage: MinecraftRangeType<f64>,
     #[serde(default)]
@@ -152,7 +152,7 @@ pub struct Attack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AttackCooldown {
     #[serde(default)]
     pub attack_cooldown_complete_event: MinecraftEvent,
@@ -160,13 +160,13 @@ pub struct AttackCooldown {
     pub attack_cooldown_time: MinecraftRangeType<f64>,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct AttackDamage {
     pub value: i32
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Balloonable {
     #[serde_inline_default(2.0)]
     pub soft_distance: f64,
@@ -180,24 +180,24 @@ pub struct Balloonable {
     pub mass: f64,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Barter {
     pub barter_table: String,
     #[serde(default)]
     pub cooldown_after_being_attacked: i32,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BlockClimber {}
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct BlockSensorOnBreak {
     block_list: Vec<String>,
     on_block_broken: String,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BlockSensor {
     pub on_break: Vec<BlockSensorOnBreak>,
     #[serde_inline_default(16.0)]
@@ -206,11 +206,11 @@ pub struct BlockSensor {
     pub sources: Vec<String>,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BodyRotationBlocked {}
 
 #[serde_inline_default]
-#[derive(Deserialize, Default, Debug)]
+#[derive(Clone, Deserialize, Default, Debug)]
 pub struct BoostableBoostItem {
     #[serde_inline_default(1)]
     pub damage: i32,
@@ -219,7 +219,7 @@ pub struct BoostableBoostItem {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Boostable {
     #[serde(default)]
     pub boost_items: Vec<BoostableBoostItem>,
@@ -230,7 +230,7 @@ pub struct Boostable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Boss {
     #[serde_inline_default(55)]
     pub hud_range: i32,
@@ -240,14 +240,14 @@ pub struct Boss {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BreakBlocks {
     #[serde(default)]
     pub breakable_blocks: Vec<String>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Breathable {
     #[serde(default)]
     pub breathe_blocks: Vec<String>,
@@ -271,7 +271,7 @@ pub struct Breathable {
     pub totalSupply: i32,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct BreedableBreedsWith {
     #[serde(default)]
     pub baby_type: String,
@@ -281,7 +281,7 @@ pub struct BreedableBreedsWith {
     pub mate_type: String,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct BreedableDenyParentsVariant {
     #[serde(default)]
     chance: f64,
@@ -291,7 +291,7 @@ pub struct BreedableDenyParentsVariant {
     min_variant: i32,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct BreedableEnvironmentRequirements {
     #[serde(default)]
     pub blocks: Vec<String>,
@@ -302,7 +302,7 @@ pub struct BreedableEnvironmentRequirements {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct BreedableMutationFactor {
     #[serde_inline_default(0.0)]
     pub color: f64,
@@ -317,7 +317,7 @@ pub struct BreedableMutationFactor {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Breedable {
     #[serde_inline_default(false)]
     pub allow_sitting: bool,
@@ -358,7 +358,7 @@ pub struct Breedable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Bribeable {
     #[serde_inline_default(2.0)]
     pub bribe_cooldown: f64,
@@ -367,7 +367,7 @@ pub struct Bribeable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Buoyant {
     #[serde_inline_default(true)]
     pub apply_gravity: bool,
@@ -385,23 +385,23 @@ pub struct Buoyant {
     pub simulate_waves: bool,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BurnsInDaylight {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct CanClimb {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct CanFly {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct CanJoinRaid {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct CanPowerJump {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct CelebrateHunt {
     #[serde_inline_default(true)]
     pub broadcast: bool,
@@ -418,21 +418,21 @@ pub struct CelebrateHunt {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Color {
     #[serde_inline_default(0)]
     pub value: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Color2 {
     #[serde_inline_default(0)]
     pub value: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct CombatRegeneration {
     #[serde_inline_default(5)]
     pub regeneration_duration: i32,
@@ -442,7 +442,7 @@ pub struct CombatRegeneration {
     pub apply_to_family: bool,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ConditionalBandwidthOptimizationConditionalValues {
     #[serde(default)]
     pub max_dropped_ticks: i32,
@@ -452,7 +452,7 @@ pub struct ConditionalBandwidthOptimizationConditionalValues {
     pub use_motion_prediction_hints: bool,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ConditionalBandwidthOptimizationDefaultValues {
     #[serde(default)]
     pub max_dropped_ticks: i32,
@@ -463,7 +463,7 @@ pub struct ConditionalBandwidthOptimizationDefaultValues {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ConditionalBandwidthOptimization {
     #[serde(default)]
     pub conditional_values: Vec<ConditionalBandwidthOptimizationConditionalValues>,
@@ -471,7 +471,7 @@ pub struct ConditionalBandwidthOptimization {
     pub default_values: ConditionalBandwidthOptimizationDefaultValues,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct CustomHitTestHitboxes {
     #[serde(default)]
     pub height: f64,
@@ -482,14 +482,14 @@ pub struct CustomHitTestHitboxes {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct CustomHitTest {
     #[serde(default)]
     pub hitboxes: Vec<CustomHitTestHitboxes>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct DamageOverTime {
     #[serde_inline_default(1)]
     pub damage_per_hurt: i32,
@@ -497,7 +497,7 @@ pub struct DamageOverTime {
     pub time_between_hurt: f64,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct DamageSensorTriggersOnDamage {
     #[serde(default)]
     pub filters: MinecraftFilterType,
@@ -505,7 +505,7 @@ pub struct DamageSensorTriggersOnDamage {
     pub event: String,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct DamageSensorTriggers {
     #[serde(default)]
     pub cause: String,
@@ -522,14 +522,14 @@ pub struct DamageSensorTriggers {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct DamageSensor {
     #[serde(default)]
     pub triggers: Vec<DamageSensorTriggers>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Dash {
     #[serde_inline_default(1.0)]
     pub cooldown_time: f64,
@@ -540,14 +540,14 @@ pub struct Dash {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct DefaultLookAngle {
     #[serde_inline_default(0.0)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct DespawnFromDistance {
     #[serde_inline_default(128)]
     pub max_distance: i32,
@@ -556,7 +556,7 @@ pub struct DespawnFromDistance {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Despawn {
     #[serde(default)]
     pub despawn_from_distance: DespawnFromDistance,
@@ -577,7 +577,7 @@ pub struct Despawn {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct DryingOutTimer {
     #[serde_inline_default(0.0)]
     pub total_time: f64,
@@ -592,7 +592,7 @@ pub struct DryingOutTimer {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Dweller {
     #[serde(default)]
     pub dwelling_type: String,
@@ -615,7 +615,7 @@ pub struct Dweller {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct EconomyTradeTable {
     #[serde(default)]
     pub convert_trades_economy: bool,
@@ -644,7 +644,7 @@ pub struct EconomyTradeTable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct EntitySensor {
     #[serde_inline_default(-1.0)]
     pub cooldown: f64,
@@ -665,7 +665,7 @@ pub struct EntitySensor {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct EnvironmentSensorTrigger {
     #[serde(default)]
     pub event: String,
@@ -676,17 +676,17 @@ pub struct EnvironmentSensorTrigger {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct EnvironmentSensor {
     #[serde(default)]
     pub triggers: Vec<EnvironmentSensorTrigger>,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct EquipItem {}
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct EquipmentSlotDropChance {
     #[serde(default)]
     pub slot: String,
@@ -695,7 +695,7 @@ pub struct EquipmentSlotDropChance {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Equipment {
     #[serde(default)]
     pub slot_drop_chance: Vec<EquipmentSlotDropChance>,
@@ -704,7 +704,7 @@ pub struct Equipment {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct EquippableSlot {
     #[serde(default)]
     pub accepted_items: Vec<String>,
@@ -721,14 +721,14 @@ pub struct EquippableSlot {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Equippable {
     #[serde(default)]
     pub slots: Vec<EquippableSlot>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ExhaustionValues {
     #[serde_inline_default(0.1)]
     pub attack: f64,
@@ -751,7 +751,7 @@ pub struct ExhaustionValues {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ExperienceReward {
     #[serde(default)]
     pub on_bred: MolangExpression,
@@ -760,7 +760,7 @@ pub struct ExperienceReward {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Explode {
     #[serde_inline_default(true)]
     pub breaks_blocks: bool,
@@ -780,14 +780,14 @@ pub struct Explode {
     pub power: f64,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct FireImmune {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct FloatsInLiquid {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Flocking {
     #[serde_inline_default(0.0)]
     pub block_distance: f64,
@@ -828,14 +828,14 @@ pub struct Flocking {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct FlyingSpeed {
     #[serde_inline_default(0.0)]
     pub value: f64
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct FollowRange {
     #[serde_inline_default(0.0)]
     pub value: f64,
@@ -844,14 +844,14 @@ pub struct FollowRange {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct FrictionModifier {
     #[serde_inline_default(1.0)]
     pub value: f64
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct GameEventMovementTracking {
     #[serde_inline_default(false)]
     pub emit_flap: bool,
@@ -862,7 +862,7 @@ pub struct GameEventMovementTracking {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Genetics {
     #[serde(default)]
     pub genes: Vec<String>,
@@ -873,7 +873,7 @@ pub struct Genetics {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Giveable {
     #[serde_inline_default(0.0)]
     pub cooldown: f64,
@@ -884,14 +884,14 @@ pub struct Giveable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct GroundOffset {
     #[serde_inline_default(1.0)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct GroupSize {
     #[serde(default)]
     pub filters: MinecraftFilterType,
@@ -900,7 +900,7 @@ pub struct GroupSize {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct GrowsCrop {
     #[serde_inline_default(0.0)]
     pub chance: f64,
@@ -909,7 +909,7 @@ pub struct GrowsCrop {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct HealableItem {
     #[serde_inline_default(1)]
     pub heal_amount: i32,
@@ -918,7 +918,7 @@ pub struct HealableItem {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Healable {
     #[serde(default)]
     pub filters: MinecraftFilterType,
@@ -929,7 +929,7 @@ pub struct Healable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Health {
     #[serde_inline_default(0.0)]
     pub max: f64,
@@ -938,7 +938,7 @@ pub struct Health {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Heartbeat {
     #[serde(default)]
     pub interval: MolangExpression,
@@ -946,11 +946,11 @@ pub struct Heartbeat {
     pub sound_event: String,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Hide {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Home {
     #[serde(default)]
     pub home_block_list: Vec<String>,
@@ -959,14 +959,14 @@ pub struct Home {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct HorseJumpStrength {
     #[serde(default)]
     pub value: MinecraftRangeType<f64>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct HurtOnConditionDamageCondition {
     #[serde(default)]
     pub filters: MinecraftFilterType,
@@ -977,16 +977,16 @@ pub struct HurtOnConditionDamageCondition {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct HurtOnCondition {
     #[serde(default)]
     pub damage_conditions: Vec<HurtOnConditionDamageCondition>,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct InputGroundControlled {}
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct InsideBlockNotifierBlockList {
     pub block: MinecraftBlockType,
     #[serde(default)]
@@ -996,34 +996,34 @@ pub struct InsideBlockNotifierBlockList {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct InsideBlockNotifier {
     #[serde(default)]
     pub block_list: Vec<InsideBlockNotifierBlockList>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Insomnia {
     #[serde_inline_default(3.0)]
     pub days_until_insomnia: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct InstantDespawn {
     #[serde_inline_default(false)]
     pub remove_child_entities: bool,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct InteractAddItems {
     #[serde(default)]
     pub table: String,
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct InteractParticleOnStart {
     #[serde_inline_default(false)]
     pub particle_offset_towards_interactor: bool,
@@ -1034,14 +1034,14 @@ pub struct InteractParticleOnStart {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct InteractSpawnItems {
     #[serde(default)]
     pub table: String,
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct InteractRepairEntityItem {
     #[serde(default)]
     pub item_slot: String,
@@ -1050,7 +1050,7 @@ pub struct InteractRepairEntityItem {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct InteractList {
     #[serde(default)]
     pub add_items: InteractAddItems,
@@ -1094,14 +1094,14 @@ pub struct InteractList {
     pub vibration: String,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Interact {
     #[serde(default)]
     pub interactions: Vec<InteractList>
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Inventory {
     #[serde_inline_default(0)]
     pub additional_slots_per_strength: i32,
@@ -1117,69 +1117,69 @@ pub struct Inventory {
     pub restrict_to_owner: bool,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsBaby {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsCharged {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsChested {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsDyeable {
     #[serde(default)]
     pub interact_text: String,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsHiddenWhenInvisible {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsIgnited {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsIllagerCaptain {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsSaddled {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsShaking {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsSheared {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsStackable {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsStunned {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct IsTamed {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ItemControllable {
     #[serde(default)]
     pub control_items: Vec<String>,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ItemHopper {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct JumpDynamic {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct JumpStatic {
     #[serde_inline_default(0.42)]
     pub jump_power: f64
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct KnockbackResistance {
     #[serde(default)]
     pub value: f64,
@@ -1187,14 +1187,14 @@ pub struct KnockbackResistance {
     pub max: f64,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct LavaMovement {
     #[serde(default)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Leashable {
     #[serde_inline_default(false)]
     pub can_be_stolen: bool,
@@ -1211,7 +1211,7 @@ pub struct Leashable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct LookAt {
     #[serde_inline_default(false)]
     pub allow_invulnerable: bool,
@@ -1228,24 +1228,24 @@ pub struct LookAt {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Loot {
     #[serde(default)]
     pub table: String,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ManagedWanderingTrader {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MarkVariant {
     #[serde_inline_default(0)]
     pub value: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MobEffect {
     #[serde_inline_default(0)]
     pub cooldown_time: i32,
@@ -1260,24 +1260,24 @@ pub struct MobEffect {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementAmphibious {
     #[serde_inline_default(30.0)]
     pub max_turn: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementBasic {
     #[serde_inline_default(30.0)]
     pub max_turn: f64,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementDolphin {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementFly {
     #[serde_inline_default(0.1)]
     pub start_speed: f64,
@@ -1286,7 +1286,7 @@ pub struct MovementFly {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementGeneric {
     #[serde_inline_default(0.1)]
     pub start_speed: f64,
@@ -1295,7 +1295,7 @@ pub struct MovementGeneric {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementGlide {
     #[serde_inline_default(0.1)]
     pub start_speed: f64,
@@ -1304,14 +1304,14 @@ pub struct MovementGlide {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementHover {
     #[serde_inline_default(30.0)]
     pub max_turn: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementJump {
     #[serde_inline_default(MinecraftRangeType::Range(MinecraftRange::new(0.0, 0.0)))]
     pub jump_delay: MinecraftRangeType<f64>,
@@ -1320,21 +1320,21 @@ pub struct MovementJump {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementSkip {
     #[serde_inline_default(30.0)]
     pub max_turn: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementSoundDistanceOffset {
     #[serde_inline_default(1.0)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct MovementSway {
     #[serde_inline_default(30.0)]
     pub max_turn: f64,
@@ -1345,7 +1345,7 @@ pub struct MovementSway {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct NameableNameActions {
     #[serde(default)]
     pub name_filter: String,
@@ -1354,7 +1354,7 @@ pub struct NameableNameActions {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Nameable {
     #[serde_inline_default(true)]
     pub allow_name_tag_renaming: bool,
@@ -1367,7 +1367,7 @@ pub struct Nameable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct NavigationClimb {
     #[serde_inline_default(false)]
     pub avoid_damage_blocks: bool,
@@ -1410,7 +1410,7 @@ pub struct NavigationClimb {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct NavigationFloat {
     #[serde_inline_default(false)]
     pub avoid_damage_blocks: bool,
@@ -1453,7 +1453,7 @@ pub struct NavigationFloat {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct NavigationFly {
     #[serde_inline_default(false)]
     pub avoid_damage_blocks: bool,
@@ -1496,7 +1496,7 @@ pub struct NavigationFly {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct NavigationGeneric {
     #[serde_inline_default(false)]
     pub avoid_damage_blocks: bool,
@@ -1539,7 +1539,7 @@ pub struct NavigationGeneric {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct NavigationHover {
     #[serde_inline_default(false)]
     pub avoid_damage_blocks: bool,
@@ -1582,7 +1582,7 @@ pub struct NavigationHover {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct NavigationSwim {
     #[serde_inline_default(false)]
     pub avoid_damage_blocks: bool,
@@ -1625,7 +1625,7 @@ pub struct NavigationSwim {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct NavigationWalk {
     #[serde_inline_default(false)]
     pub avoid_damage_blocks: bool,
@@ -1667,10 +1667,10 @@ pub struct NavigationWalk {
     pub is_amphibious: bool,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct OutOfControl {}
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Peek {
     #[serde(default)]
     pub on_close: MinecraftEvent,
@@ -1680,11 +1680,11 @@ pub struct Peek {
     pub on_target_open: MinecraftEvent,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Persistent {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Physics {
     #[serde_inline_default(true)]
     pub has_collision: bool,
@@ -1695,7 +1695,7 @@ pub struct Physics {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct PlayerExhaustion {
     #[serde(default)]
     pub max: i32,
@@ -1704,7 +1704,7 @@ pub struct PlayerExhaustion {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct PlayerExperience {
     #[serde_inline_default(5)]
     pub max: i32,
@@ -1713,7 +1713,7 @@ pub struct PlayerExperience {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct PlayerLevel {
     #[serde(default)]
     pub max: i32,
@@ -1722,7 +1722,7 @@ pub struct PlayerLevel {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct PlayerSaturation {
     #[serde(default)]
     pub max: i32,
@@ -1731,7 +1731,7 @@ pub struct PlayerSaturation {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct PreferredPath {
     #[serde(default)]
     pub default_block_cost: f64,
@@ -1744,7 +1744,7 @@ pub struct PreferredPath {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ProjectileOnHitDefinitionEvent {
     #[serde(default)]
     pub affect_projectile: bool,
@@ -1761,7 +1761,7 @@ pub struct ProjectileOnHitDefinitionEvent {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ProjectileOnHitImpactDamage {
     #[serde(default)]
     pub catch_fire: bool,
@@ -1790,7 +1790,7 @@ pub struct ProjectileOnHitImpactDamage {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ProjectileOnHitMobEffect {
     #[serde_inline_default(1)]
     pub amplifier: i32,
@@ -1811,7 +1811,7 @@ pub struct ProjectileOnHitMobEffect {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ProjectileOnHitParticleOnHit {
     #[serde(default)]
     pub on_entity_hit: bool,
@@ -1824,7 +1824,7 @@ pub struct ProjectileOnHitParticleOnHit {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ProjectileOnHitSpawnAoeCloud {
     #[serde_inline_default(true)]
     pub affect_owner: bool,
@@ -1845,7 +1845,7 @@ pub struct ProjectileOnHitSpawnAoeCloud {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ProjectileOnHitSpawnChance {
     #[serde(default)]
     pub first_spawn_count: i32,
@@ -1862,7 +1862,7 @@ pub struct ProjectileOnHitSpawnChance {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ProjectileOnHit {
     #[serde(default)]
     pub catch_fire: bool,
@@ -1903,7 +1903,7 @@ pub struct ProjectileOnHit {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Projectile {
     #[serde(default)]
     pub anchor: i32,
@@ -1970,14 +1970,14 @@ pub struct Projectile {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct PushThrough {
     #[serde(default)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Pushable {
     #[serde_inline_default(true)]
     pub is_pushable: bool,
@@ -1986,21 +1986,21 @@ pub struct Pushable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct RaidTrigger {
     #[serde(default)]
     pub triggered_event: String,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct RailMovement {
     #[serde_inline_default(0.4)]
     pub max_speed: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct RailSensor {
     #[serde(default)]
     pub check_block_types: bool,
@@ -2019,7 +2019,7 @@ pub struct RailSensor {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct RavagerBlockedReactionChoice {
     #[serde_inline_default(1)]
     pub weight: i32,
@@ -2028,7 +2028,7 @@ pub struct RavagerBlockedReactionChoice {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct RavagerBlocked {
     #[serde_inline_default(3.0)]
     pub knockback_strength: f64,
@@ -2037,7 +2037,7 @@ pub struct RavagerBlocked {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct RideableSeat {
     #[serde_inline_default(181.0)]
     pub lock_rider_rotation: f64,
@@ -2052,7 +2052,7 @@ pub struct RideableSeat {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Rideable {
     #[serde(default)]
     pub controlling_seat: i32,
@@ -2076,18 +2076,18 @@ pub struct Rideable {
     pub seats: Vec<RideableSeat>,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ScaffoldingClimber {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Scale {
     #[serde_inline_default(1.0)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct ScaleByAge {
     #[serde_inline_default(1.0)]
     pub end_scale: f64,
@@ -2096,7 +2096,7 @@ pub struct ScaleByAge {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Scheduler {
     #[serde(default)]
     pub scheduled_events: Vec<MinecraftEvent>,
@@ -2107,7 +2107,7 @@ pub struct Scheduler {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct ShareablesItem {
     #[serde(default)]
     pub admire: bool,
@@ -2138,7 +2138,7 @@ pub struct ShareablesItem {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Shareables {
     #[serde_inline_default(false)]
     pub all_items: bool,
@@ -2153,7 +2153,7 @@ pub struct Shareables {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Shooter {
     #[serde_inline_default(-1)]
     pub aux_val: i32,
@@ -2170,7 +2170,7 @@ pub struct Shooter {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Sittable {
     #[serde(default)]
     pub sit_event: MinecraftEvent,
@@ -2179,21 +2179,21 @@ pub struct Sittable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct SkinId {
     #[serde_inline_default(0)]
     pub value: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct SoundVolume {
     #[serde_inline_default(1.0)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct SpawnEntityEntity {
     #[serde(default)]
     pub filters: MinecraftFilter,
@@ -2222,14 +2222,14 @@ pub struct SpawnEntityEntity {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct SpawnEntity {
     #[serde(default)]
     pub entities: Vec<SpawnEntityEntity>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct SpellEffectsAddEffect {
     #[serde(default)]
     pub effect: String,
@@ -2245,7 +2245,7 @@ pub struct SpellEffectsAddEffect {
     pub display_on_screen_animation: bool,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct SpellEffects {
     #[serde(default)]
     pub add_effects: Vec<SpellEffectsAddEffect>,
@@ -2253,7 +2253,7 @@ pub struct SpellEffects {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Strength {
     #[serde_inline_default(5)]
     pub max: i32,
@@ -2262,7 +2262,7 @@ pub struct Strength {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Tameable {
     #[serde_inline_default(1.0)]
     pub probability: f64,
@@ -2273,21 +2273,21 @@ pub struct Tameable {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct TamemountAutoRejectItems {
     #[serde(default)]
     pub items: Vec<String>,
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct TamemountFeedItems {
     #[serde(default)]
     pub items: Vec<String>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Tamemount {
     #[serde_inline_default(5)]
     pub attempt_temper_mod: i32,
@@ -2308,7 +2308,7 @@ pub struct Tamemount {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct TargetNearbySensor {
     #[serde_inline_default(1.0)]
     pub inside_range: f64,
@@ -2325,7 +2325,7 @@ pub struct TargetNearbySensor {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Teleport {
     #[serde_inline_default(0.01)]
     pub dark_teleport_chance: f64,
@@ -2346,7 +2346,7 @@ pub struct Teleport {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct TickWorld {
     #[serde_inline_default(128.0)]
     pub distance_to_players: f64,
@@ -2357,7 +2357,7 @@ pub struct TickWorld {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Timer {
     #[serde_inline_default(true)]
     pub looping: bool,
@@ -2371,11 +2371,11 @@ pub struct Timer {
     pub time_down_event: MinecraftEvent,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct TradeResupply {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct TradeTable {
     #[serde_inline_default(false)]
     pub convert_trades_economy: bool,
@@ -2390,7 +2390,7 @@ pub struct TradeTable {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Trail {
     #[serde(default)]
     pub block_type: String,
@@ -2401,7 +2401,7 @@ pub struct Trail {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct TransformationDelay {
     #[serde_inline_default(0.0)]
     pub block_assist_chance: f64,
@@ -2422,7 +2422,7 @@ pub struct TransformationDelay {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Transformation {
     /*
     #[serde(default)]
@@ -2448,11 +2448,11 @@ pub struct Transformation {
     pub delay: TransformationDelay,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Trust {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Trusting {
     #[serde_inline_default(1.0)]
     pub probability: f64,
@@ -2462,45 +2462,45 @@ pub struct Trusting {
     pub trust_items: Vec<String>,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct TypeFamily {
     #[serde(default)]
     pub family: Vec<String>,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct UnderwaterMovement {
     #[serde(default)]
     pub value: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct Variant {
     #[serde_inline_default(0)]
     pub value: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct WalkAnimationSpeed {
     #[serde_inline_default(0.0)]
     pub value: f64,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct WantsJockey {}
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct WaterMovement {
     #[serde_inline_default(0.8)]
     pub drag_factor: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct VariableMaxAutoStep {
     #[serde_inline_default(0.5625)]
     pub base_value: f64,

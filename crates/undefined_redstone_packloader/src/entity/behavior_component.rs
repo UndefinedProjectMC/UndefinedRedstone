@@ -12,7 +12,7 @@ use crate::trigger::MinecraftTrigger;
  官方文档:
  https://learn.microsoft.com/zh-cn/minecraft/creator/reference/content/entityreference/examples/aigoallist?view=minecraft-bedrock-stable
 */
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorAdmireItem {
     #[serde(default)]
     pub admire_item_sound: String,
@@ -26,7 +26,7 @@ pub struct BehaviorAdmireItem {
     pub priority: i32,
 }
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorAvoidBlock {
     #[serde(default)]
     pub avoid_block_sound: String,
@@ -53,7 +53,7 @@ pub struct BehaviorAvoidBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorAvoidMobType {
     #[serde(default)]
     pub avoid_mob_sound: String,
@@ -87,14 +87,14 @@ pub struct BehaviorAvoidMobType {
     pub walk_speed_multiplier: f64,
 }
 
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorBarter {
     #[serde(default)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorBeg {
     #[serde(default)]
     pub items: Vec<String>,
@@ -107,7 +107,7 @@ pub struct BehaviorBeg {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorBreed {
     #[serde(default)]
     pub priority: i32,
@@ -116,7 +116,7 @@ pub struct BehaviorBreed {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorCelebrate {
     #[serde(default)]
     pub celebration_sound: String,
@@ -133,7 +133,7 @@ pub struct BehaviorCelebrate {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorCelebrateSurvive {
     #[serde(default)]
     pub celebration_sound: String,
@@ -150,7 +150,7 @@ pub struct BehaviorCelebrateSurvive {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorChargeAttack {
     #[serde_inline_default(3.0)]
     pub max_distance: f64,
@@ -165,7 +165,7 @@ pub struct BehaviorChargeAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorChargeHeldItem {
     #[serde(default)]
     pub items: Vec<String>,
@@ -174,7 +174,7 @@ pub struct BehaviorChargeHeldItem {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorCircleAroundAnchor {
     #[serde_inline_default(15.0)]
     pub angle_change: f64,
@@ -199,7 +199,7 @@ pub struct BehaviorCircleAroundAnchor {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorControlledByPlayer {
     #[serde_inline_default(0.5)]
     pub fractional_rotation: f64,
@@ -212,7 +212,7 @@ pub struct BehaviorControlledByPlayer {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorCroak {
     #[serde_inline_default(MinecraftRangeType::Vec([4.5, 4.5]))]
     pub duration: MinecraftRangeType<f64>,
@@ -223,7 +223,7 @@ pub struct BehaviorCroak {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDefendTrustedTarget {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -250,7 +250,7 @@ pub struct BehaviorDefendTrustedTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDefendVillageTarget {
     #[serde_inline_default(0.05)]
     pub attack_chance: f64,
@@ -263,7 +263,7 @@ pub struct BehaviorDefendVillageTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDelayedAttack {
     #[serde_inline_default(0.75)]
     pub attack_duration: f64,
@@ -316,7 +316,7 @@ pub struct BehaviorDelayedAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDig {
     #[serde_inline_default(false)]
     pub allow_dig_when_named: bool,
@@ -337,7 +337,7 @@ pub struct BehaviorDig {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDrinkMilk {
     #[serde_inline_default(5.0)]
     pub cooldown_seconds: f64,
@@ -348,7 +348,7 @@ pub struct BehaviorDrinkMilk {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragonChargePlayer {
     #[serde_inline_default(3.0)]
     pub active_speed: f64,
@@ -365,14 +365,14 @@ pub struct BehaviorDragonChargePlayer {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragondeath {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragonflaming {
     #[serde_inline_default(10.0)]
     pub cooldown_time: f64,
@@ -387,28 +387,28 @@ pub struct BehaviorDragonflaming {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragonHoldingPattern {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragonLanding {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragonScanning {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragonStrafePlayer {
     #[serde_inline_default(0.6)]
     pub active_speed: f64,
@@ -431,14 +431,14 @@ pub struct BehaviorDragonStrafePlayer {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDragonTakeoff {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDrinkPotionPotion {
     #[serde_inline_default(1.0)]
     pub chance: f64,
@@ -449,7 +449,7 @@ pub struct BehaviorDrinkPotionPotion {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDrinkPotion {
     #[serde(default)]
     pub potions: Vec<BehaviorDrinkPotionPotion>,
@@ -460,7 +460,7 @@ pub struct BehaviorDrinkPotion {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorDropItemFor {
     #[serde_inline_default(0.2)]
     pub cooldown: f64,
@@ -500,7 +500,7 @@ pub struct BehaviorDropItemFor {
     pub time_of_day_range: MinecraftRangeType<f64>,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct BehaviorEatBlockEatAndReplaceBlockPair {
     #[serde(default)]
     pub eat_block: String,
@@ -509,7 +509,7 @@ pub struct BehaviorEatBlockEatAndReplaceBlockPair {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorEatBlock {
     #[serde(default)]
     pub eat_and_replace_block_pairs: Vec<BehaviorEatBlockEatAndReplaceBlockPair>,
@@ -524,7 +524,7 @@ pub struct BehaviorEatBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorEatCarriedItem {
     #[serde_inline_default(0.0)]
     pub delay_before_eating: f64,
@@ -533,7 +533,7 @@ pub struct BehaviorEatCarriedItem {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorEatMob {
     #[serde_inline_default(1.0)]
     pub eat_animation_time: f64,
@@ -552,7 +552,7 @@ pub struct BehaviorEatMob {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorEmerge {
     #[serde_inline_default(0.5)]
     pub cooldown_time: f64,
@@ -565,28 +565,28 @@ pub struct BehaviorEmerge {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorEndermanLeaveBlock {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorEndermanTakeBlock {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorEquipItem {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorExploreOutskirts {
     #[serde_inline_default([5.0, 0.0, 5.0])]
     pub dist_from_boundary: [f64; 3],
@@ -615,7 +615,7 @@ pub struct BehaviorExploreOutskirts {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFertilizeFarmBlock {
     #[serde_inline_default(1.5)]
     pub goal_radius: f64,
@@ -636,7 +636,7 @@ pub struct BehaviorFertilizeFarmBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFindCover {
     #[serde_inline_default(0.0)]
     pub cooldown_time: f64,
@@ -647,7 +647,7 @@ pub struct BehaviorFindCover {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFindMount {
     #[serde_inline_default(false)]
     pub avoid_water: bool,
@@ -664,7 +664,7 @@ pub struct BehaviorFindMount {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFindUnderwaterTreasure {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -677,7 +677,7 @@ pub struct BehaviorFindUnderwaterTreasure {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFleeSun {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -686,7 +686,7 @@ pub struct BehaviorFleeSun {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFloat {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -695,7 +695,7 @@ pub struct BehaviorFloat {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFloatWander {
     #[serde_inline_default(MinecraftRangeType::Vec([0.0, 0.0]))]
     pub float_duration: MinecraftRangeType<f64>,
@@ -715,7 +715,7 @@ pub struct BehaviorFloatWander {
 
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFollowCaravan {
     pub entity_types: MinecraftEntityTypes,
     #[serde_inline_default(1)]
@@ -743,7 +743,7 @@ pub struct BehaviorFollowCaravan {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFollowMob {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -756,7 +756,7 @@ pub struct BehaviorFollowMob {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFollowOwner {
     #[serde_inline_default(true)]
     pub can_teleport: bool,
@@ -775,7 +775,7 @@ pub struct BehaviorFollowOwner {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFollowParent {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -784,7 +784,7 @@ pub struct BehaviorFollowParent {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorFollowTargetCaptain {
     #[serde_inline_default(0.0)]
     pub follow_distance: f64,
@@ -795,7 +795,7 @@ pub struct BehaviorFollowTargetCaptain {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorGoAndGiveItemsToNoteblock {
     #[serde_inline_default(0)]
     pub listen_time: i32,
@@ -814,7 +814,7 @@ pub struct BehaviorGoAndGiveItemsToNoteblock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorGoAndGiveItemsToOwner {
     #[serde_inline_default(0)]
     pub listen_time: i32,
@@ -833,7 +833,7 @@ pub struct BehaviorGoAndGiveItemsToOwner {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorGoHome {
     #[serde_inline_default(2.0)]
     pub calculate_new_path_radius: f64,
@@ -852,7 +852,7 @@ pub struct BehaviorGoHome {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorGuardianAttack {
     #[serde_inline_default(2)]
     pub elder_extra_magic_damage: i32,
@@ -873,7 +873,7 @@ pub struct BehaviorGuardianAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorHarvestFarmBlock {
     #[serde_inline_default(1.5)]
     pub goal_radius: f64,
@@ -896,7 +896,7 @@ pub struct BehaviorHarvestFarmBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorHide {
     #[serde_inline_default(1.0)]
     pub duration: f64,
@@ -911,7 +911,7 @@ pub struct BehaviorHide {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorHoldGround {
     #[serde_inline_default(false)]
     pub broadcast: bool,
@@ -926,7 +926,7 @@ pub struct BehaviorHoldGround {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorHurtByTarget {
     #[serde_inline_default(false)]
     pub alert_same_type: bool,
@@ -953,7 +953,7 @@ pub struct BehaviorHurtByTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorInspectBookshelf {
     #[serde_inline_default(0.5)]
     pub goal_radius: f64,
@@ -970,7 +970,7 @@ pub struct BehaviorInspectBookshelf {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorInvestigateSuspiciousLocation {
     #[serde_inline_default(1.5)]
     pub goal_radius: f64,
@@ -981,7 +981,7 @@ pub struct BehaviorInvestigateSuspiciousLocation {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorJumpToBlock {
     #[serde_inline_default(MinecraftRangeType::Vec([10.0, 20.0]))]
     pub cooldown_range: MinecraftRangeType<f64>,
@@ -1008,7 +1008,7 @@ pub struct BehaviorJumpToBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorKnockbackRoar {
     #[serde_inline_default(0.5)]
     pub attack_time: f64,
@@ -1037,7 +1037,7 @@ pub struct BehaviorKnockbackRoar {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorLayDown {
     #[serde_inline_default(120)]
     pub interval: i32,
@@ -1048,7 +1048,7 @@ pub struct BehaviorLayDown {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorLayEgg {
     #[serde_inline_default(false)]
     pub allow_laying_from_below: bool,
@@ -1079,7 +1079,7 @@ pub struct BehaviorLayEgg {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorLeapAtTarget {
     #[serde_inline_default(true)]
     pub must_be_on_ground: bool,
@@ -1094,7 +1094,7 @@ pub struct BehaviorLeapAtTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorLookAtEntity {
     #[serde_inline_default(360)]
     pub angle_of_view_horizontal: i32,
@@ -1111,7 +1111,7 @@ pub struct BehaviorLookAtEntity {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorLookAtPlayer {
     #[serde_inline_default(360)]
     pub angle_of_view_horizontal: i32,
@@ -1130,7 +1130,7 @@ pub struct BehaviorLookAtPlayer {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorLookAtTarget {
     #[serde_inline_default(360)]
     pub angle_of_view_horizontal: i32,
@@ -1147,7 +1147,7 @@ pub struct BehaviorLookAtTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorLookAtTradingPlayer {
     #[serde_inline_default(360)]
     pub angle_of_view_horizontal: i32,
@@ -1164,14 +1164,14 @@ pub struct BehaviorLookAtTradingPlayer {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMakeLove {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMeleeAttack {
     #[serde_inline_default(false)]
     pub attack_once: bool,
@@ -1224,7 +1224,7 @@ pub struct BehaviorMeleeAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMeleeBoxAttack {
     #[serde_inline_default(false)]
     pub attack_once: bool,
@@ -1277,7 +1277,7 @@ pub struct BehaviorMeleeBoxAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMingle {
     #[serde_inline_default(0.0)]
     pub cooldown_time: f64,
@@ -1294,7 +1294,7 @@ pub struct BehaviorMingle {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMountPathing {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -1307,7 +1307,7 @@ pub struct BehaviorMountPathing {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveIndoors {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -1318,7 +1318,7 @@ pub struct BehaviorMoveIndoors {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveOutdoors {
     #[serde_inline_default(0.500000)]
     pub goal_radius: f64,
@@ -1337,7 +1337,7 @@ pub struct BehaviorMoveOutdoors {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveThroughVillage {
     #[serde_inline_default(false)]
     pub only_at_night: bool,
@@ -1348,7 +1348,7 @@ pub struct BehaviorMoveThroughVillage {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveToBlock {
     #[serde_inline_default(0.5)]
     pub goal_radius: f64,
@@ -1379,7 +1379,7 @@ pub struct BehaviorMoveToBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveToLand {
     #[serde_inline_default(0.5)]
     pub goal_radius: f64,
@@ -1394,7 +1394,7 @@ pub struct BehaviorMoveToLand {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveToLiquid {
     #[serde_inline_default(0.5)]
     pub goal_radius: f64,
@@ -1413,7 +1413,7 @@ pub struct BehaviorMoveToLiquid {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveToRandomBlock {
     #[serde_inline_default(16.0)]
     pub block_distance: f64,
@@ -1426,7 +1426,7 @@ pub struct BehaviorMoveToRandomBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveToVillage {
     #[serde_inline_default(0.0)]
     pub cooldown_time: f64,
@@ -1441,7 +1441,7 @@ pub struct BehaviorMoveToVillage {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveToWater {
     #[serde_inline_default(0.5)]
     pub goal_radius: f64,
@@ -1458,7 +1458,7 @@ pub struct BehaviorMoveToWater {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveTowardsDwellingRestriction {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -1467,7 +1467,7 @@ pub struct BehaviorMoveTowardsDwellingRestriction {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveTowardsHomeRestriction {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -1476,7 +1476,7 @@ pub struct BehaviorMoveTowardsHomeRestriction {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorMoveTowardsTarget {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -1485,7 +1485,7 @@ pub struct BehaviorMoveTowardsTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorNap {
     #[serde_inline_default(0.0)]
     pub cooldown_max: f64,
@@ -1500,7 +1500,7 @@ pub struct BehaviorNap {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorNearestAttackableTarget {
     #[serde_inline_default(0)]
     pub attack_interval: i32,
@@ -1539,7 +1539,7 @@ pub struct BehaviorNearestAttackableTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorNearestPrioritizedAttackableTarget {
     #[serde_inline_default(0)]
     pub attack_interval: i32,
@@ -1572,7 +1572,7 @@ pub struct BehaviorNearestPrioritizedAttackableTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorOcelotSitOnBlock {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -1581,7 +1581,7 @@ pub struct BehaviorOcelotSitOnBlock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorOcelotAttack {
     #[serde_inline_default(1.0)]
     pub cooldown_time: f64,
@@ -1608,14 +1608,14 @@ pub struct BehaviorOcelotAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorOfferFlower {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorOpenDoor {
     #[serde_inline_default(true)]
     pub close_door_after: bool,
@@ -1624,7 +1624,7 @@ pub struct BehaviorOpenDoor {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorOwnerHurtByTarget {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -1649,7 +1649,7 @@ pub struct BehaviorOwnerHurtByTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorOwnerHurtTarget {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -1674,7 +1674,7 @@ pub struct BehaviorOwnerHurtTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorPanic {
     #[serde(default)]
     pub damage_sources: Vec<String>,
@@ -1693,14 +1693,14 @@ pub struct BehaviorPanic {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorPeek {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorPetSleepWithOwner {
     #[serde_inline_default(0.5)]
     pub goal_radius: f64,
@@ -1717,7 +1717,7 @@ pub struct BehaviorPetSleepWithOwner {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorPickupItems {
     #[serde_inline_default(false)]
     pub can_pickup_any_item: bool,
@@ -1746,7 +1746,7 @@ pub struct BehaviorPickupItems {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorPlay {
     #[serde_inline_default(0.0)]
     pub chance_to_start: f64,
@@ -1767,7 +1767,7 @@ pub struct BehaviorPlay {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorPlayDead {
     #[serde_inline_default(true)]
     pub apply_regeneration: bool,
@@ -1786,14 +1786,14 @@ pub struct BehaviorPlayDead {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorPlayerRideTamed {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRaidGarden {
     #[serde(default)]
     pub blocks: Vec<String>,
@@ -1818,7 +1818,7 @@ pub struct BehaviorRaidGarden {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRamAttack {
     #[serde_inline_default(0.333333)]
     pub baby_knockback_modifier: f64,
@@ -1847,7 +1847,7 @@ pub struct BehaviorRamAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomBreach {
     #[serde_inline_default(0.0)]
     pub cooldown_time: f64,
@@ -1864,7 +1864,7 @@ pub struct BehaviorRandomBreach {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomFly {
     #[serde_inline_default(true)]
     pub can_land_on_trees: bool,
@@ -1877,7 +1877,7 @@ pub struct BehaviorRandomFly {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomHover {
     #[serde(default)]
     pub hover_height: MinecraftRangeType<f64>,
@@ -1896,7 +1896,7 @@ pub struct BehaviorRandomHover {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomLookAroundAndSit {
     #[serde_inline_default(false)]
     pub continue_if_leashed: bool,
@@ -1921,7 +1921,7 @@ pub struct BehaviorRandomLookAroundAndSit {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomLookAround {
     #[serde_inline_default(360)]
     pub angle_of_view_horizontal: i32,
@@ -1938,7 +1938,7 @@ pub struct BehaviorRandomLookAround {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomSearchAndDig {
     #[serde(default)]
     pub cooldown_range: MinecraftRangeType<f64>,
@@ -1979,7 +1979,7 @@ pub struct BehaviorRandomSearchAndDig {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomSitting {
     #[serde_inline_default(0.0)]
     pub cooldown_time: f64,
@@ -1994,7 +1994,7 @@ pub struct BehaviorRandomSitting {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomStroll {
     #[serde_inline_default(120)]
     pub interval: i32,
@@ -2009,7 +2009,7 @@ pub struct BehaviorRandomStroll {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRandomSwim {
     #[serde_inline_default(true)]
     pub avoid_surface: bool,
@@ -2026,7 +2026,7 @@ pub struct BehaviorRandomSwim {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRangedAttack {
     #[serde_inline_default(0.0)]
     pub attack_interval: f64,
@@ -2065,14 +2065,14 @@ pub struct BehaviorRangedAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRestrictSun {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRiseToLiquidLevel {
     #[serde_inline_default(0.0)]
     pub liquid_y_offset: f64,
@@ -2085,14 +2085,14 @@ pub struct BehaviorRiseToLiquidLevel {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRoar {
     #[serde_inline_default(0.0)]
     pub duration: f64,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRoll {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2101,7 +2101,7 @@ pub struct BehaviorRoll {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRunAroundLikeCrazy {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2110,7 +2110,7 @@ pub struct BehaviorRunAroundLikeCrazy {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorScared {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2119,7 +2119,7 @@ pub struct BehaviorScared {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSendEvent {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2132,7 +2132,7 @@ pub struct BehaviorSendEvent {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorShareItems {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -2149,21 +2149,21 @@ pub struct BehaviorShareItems {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSilverfishMergeWithStone {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSilverfishWakeUpFriends {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSkeletonHorseTrap {
     #[serde_inline_default(1.0)]
     pub duration: f64,
@@ -2174,7 +2174,7 @@ pub struct BehaviorSkeletonHorseTrap {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSleep {
     #[serde_inline_default(false)]
     pub can_sleep_while_riding: bool,
@@ -2195,7 +2195,7 @@ pub struct BehaviorSleep {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSlimeAttack {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2210,7 +2210,7 @@ pub struct BehaviorSlimeAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSlimeFloat {
     #[serde_inline_default(0.8)]
     pub jump_chance_percentage: f64,
@@ -2221,7 +2221,7 @@ pub struct BehaviorSlimeFloat {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSlimeKeepOnJumping {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2230,7 +2230,7 @@ pub struct BehaviorSlimeKeepOnJumping {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSlimeRandomDirection {
     #[serde_inline_default(3)]
     pub add_random_time_range: i32,
@@ -2243,7 +2243,7 @@ pub struct BehaviorSlimeRandomDirection {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSnacking {
     #[serde(default)]
     pub items: Vec<String>,
@@ -2258,7 +2258,7 @@ pub struct BehaviorSnacking {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSneeze {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -2283,7 +2283,7 @@ pub struct BehaviorSneeze {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSniff {
     #[serde_inline_default(0.0)]
     pub cooldown_range: f64,
@@ -2300,7 +2300,7 @@ pub struct BehaviorSniff {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSonicBoom {
     #[serde_inline_default(5.0)]
     pub attack_cooldown: f64,
@@ -2331,42 +2331,42 @@ pub struct BehaviorSonicBoom {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSquidDive {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSquidFlee {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSquidIdle {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSquidMoveAwayFromGround {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSquidOutOfWater {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorStalkAndPounceOnTarget {
     #[serde_inline_default(2.0)]
     pub interest_time: f64,
@@ -2391,7 +2391,7 @@ pub struct BehaviorStalkAndPounceOnTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorStayNearNoteblock {
     #[serde_inline_default(0)]
     pub listen_time: i32,
@@ -2406,14 +2406,14 @@ pub struct BehaviorStayNearNoteblock {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorStayWhileSitting {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorStompAttack {
     #[serde_inline_default(false)]
     pub attack_once: bool,
@@ -2468,7 +2468,7 @@ pub struct BehaviorStompAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorStompTurtleEgg {
     #[serde_inline_default(0.5)]
     pub goal_radius: f64,
@@ -2485,7 +2485,7 @@ pub struct BehaviorStompTurtleEgg {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorStrollTowardsVillage {
     #[serde_inline_default(0.0)]
     pub cooldown_time: f64,
@@ -2502,7 +2502,7 @@ pub struct BehaviorStrollTowardsVillage {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct MinecraftSummonEntitySequence {
     #[serde_inline_default(0.0)]
     pub base_delay: f64,
@@ -2529,7 +2529,7 @@ pub struct MinecraftSummonEntitySequence {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Clone, Deserialize, Debug, Default)]
 pub struct BehaviorSummonEntitySummonChoices {
     #[serde(default)]
     pub cast_duration: f64,
@@ -2554,7 +2554,7 @@ pub struct BehaviorSummonEntitySummonChoices {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSummonEntity {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2563,7 +2563,7 @@ pub struct BehaviorSummonEntity {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSwell {
     #[serde_inline_default(2.0)]
     pub stop_distance: f64,
@@ -2574,7 +2574,7 @@ pub struct BehaviorSwell {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSwimIdle {
     #[serde_inline_default(5.0)]
     pub idle_time: f64,
@@ -2585,7 +2585,7 @@ pub struct BehaviorSwimIdle {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSwimWander {
     #[serde_inline_default(0.00833)]
     pub interval: f64,
@@ -2600,7 +2600,7 @@ pub struct BehaviorSwimWander {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSwimWithEntity {
     #[serde_inline_default(2.5)]
     pub catch_up_multiplier: f64,
@@ -2627,7 +2627,7 @@ pub struct BehaviorSwimWithEntity {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorSwoopAttack {
     #[serde_inline_default(0.2)]
     pub damage_reach: f64,
@@ -2640,14 +2640,14 @@ pub struct BehaviorSwoopAttack {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTakeFlower {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTargetWhenPushed {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -2658,7 +2658,7 @@ pub struct BehaviorTargetWhenPushed {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTempt {
     #[serde_inline_default(false)]
     pub can_get_scared: bool,
@@ -2681,7 +2681,7 @@ pub struct BehaviorTempt {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTimerFlag1 {
     #[serde_inline_default(MinecraftRangeType::Vec([10.0, 10.0]))]
     pub cooldown_range: MinecraftRangeType<f64>,
@@ -2694,7 +2694,7 @@ pub struct BehaviorTimerFlag1 {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTimerFlag2 {
     #[serde_inline_default(MinecraftRangeType::Vec([10.0, 10.0]))]
     pub cooldown_range: MinecraftRangeType<f64>,
@@ -2707,7 +2707,7 @@ pub struct BehaviorTimerFlag2 {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTimerFlag3 {
     #[serde_inline_default(MinecraftRangeType::Vec([10.0, 10.0]))]
     pub cooldown_range: MinecraftRangeType<f64>,
@@ -2720,7 +2720,7 @@ pub struct BehaviorTimerFlag3 {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTradeInterest {
     #[serde_inline_default(2.0)]
     pub carried_item_switch_time: f64,
@@ -2737,7 +2737,7 @@ pub struct BehaviorTradeInterest {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorTradeWithPlayer {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2748,7 +2748,7 @@ pub struct BehaviorTradeWithPlayer {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorVexCopyOwnerTarget {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -2757,21 +2757,21 @@ pub struct BehaviorVexCopyOwnerTarget {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorVexRandomMove {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorWitherRandomAttackPosGoal {
     #[serde_inline_default(0)]
     pub priority: i32,
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorWitherTargetHighestDamage {
     #[serde(default)]
     pub entity_types: MinecraftEntityTypes,
@@ -2796,7 +2796,7 @@ pub struct BehaviorWitherTargetHighestDamage {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorWork {
     #[serde_inline_default(0)]
     pub active_time: i32,
@@ -2819,7 +2819,7 @@ pub struct BehaviorWork {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorWorkComposter {
     #[serde_inline_default(0)]
     pub active_time: i32,
@@ -2856,7 +2856,7 @@ pub struct BehaviorWorkComposter {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorReceiveLove {
     #[serde_inline_default(0)]
     pub priority: i32,
@@ -2865,7 +2865,7 @@ pub struct BehaviorReceiveLove {
 }
 
 #[serde_inline_default]
-#[derive(Component, Deserialize, Debug)]
+#[derive(Clone, Component, Deserialize, Debug)]
 pub struct BehaviorRestrictOpenDoor {
     #[serde_inline_default(0)]
     pub priority: i32,

@@ -2,4 +2,4 @@
 members = [
     "crates/undefined_redstone_core",
     "crates/RakNet-master",
-    "crates/binary_util", "crates/undefined_redstone_network", "crates/undefined_redstone_packloader", "crates/undefined_redstone_type", "crates/undefined_redstone_molang", "crates/undefined_redstone_proc", "crates/undefined_redstone_protocol", "crates/undefined_redstone_asyncmanager"]
+    "crates/binary_util", "crates/undefined_redstone_network", "crates/undefined_redstone_packloader", "crates/undefined_redstone_type", "crates/undefined_redstone_molang", "crates/undefined_redstone_proc", "crates/undefined_redstone_protocol", "crates/undefined_redstone_asyncmanager", "crates/undefined_redstone_log"]

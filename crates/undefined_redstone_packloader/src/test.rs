@@ -1,11 +1,8 @@
 use std::fs;
-use bevy_ecs::prelude::EntityWorldMut;
-use bevy_ecs::world::World;
 use regex::Regex;
-use serde_json::Value;
-use crate::entity::component::{AmbientSoundInterval, Balloonable, Breathable, FlyingSpeed, Interact, IsHiddenWhenInvisible, TypeFamily};
 use crate::{MinecraftJsonTypes, MinecraftJsonTypesStruct};
-use crate::entity::MinecraftEntity;
+use crate::pack_loader::PackLoaderTrait;
+use crate::pack_loader::zipped_loader::ResourcePackZippedLoader;
 
 #[test]
 fn create_component() {
@@ -41,5 +38,14 @@ fn test_component() {
         MinecraftJsonTypes::MinecraftEntityContent(entity_content) => {
             println!("entity: {:#?}", entity_content);
         }
+    }
+}
+
+#[test]
+fn test_loader() {
+    let loader = ResourcePackZippedLoader::new("C:/Users/NiuBi/Desktop/resource_packs/");
+    let vec = loader.get_resource_packs();
+    for i in vec {
+        println!("{:#?}", i)
     }
 }

@@ -1,5 +1,26 @@
-use std::io;
 use std::str::FromStr;
+use serde::{Deserialize, Deserializer};
+use serde::de::Error;
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(untagged)]
+pub enum MinecraftVersionEnum {
+    Vec(Vec<u8>),
+    String(String),
+}
+
+impl MinecraftVersionEnum {
+    pub fn to_version(self) -> anyhow::Result<MinecraftVersion> {
+        match self {
+            MinecraftVersionEnum::Vec(vec) => {
+                MinecraftVersion::from_vec(vec)
+            }
+            MinecraftVersionEnum::String(str) => {
+                MinecraftVersion::from_str(str.as_str())
+            }
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, Ord, PartialOrd, Clone, Copy, Debug)]
 pub struct MinecraftVersion {
@@ -26,6 +47,17 @@ impl MinecraftVersion {
             v0: u8::from_str(split[0].trim())?,
             v1: u8::from_str(split[1].trim())?,
             v2: u8::from_str(split[2].trim())?
+        })
+    }
+
+    pub fn from_vec(vec: Vec<u8>) -> anyhow::Result<Self> {
+        if vec.len() != 3 {
+            return Err(anyhow::Error::msg("unknown version"))
+        }
+        Ok(Self {
+            v0: vec[0],
+            v1: vec[1],
+            v2: vec[2]
         })
     }
 

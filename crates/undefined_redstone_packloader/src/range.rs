@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 #[serde(untagged)]
 pub enum MinecraftRangeType<T> {
     Number(T),
@@ -14,7 +14,7 @@ impl<T: Default> Default for MinecraftRangeType<T> {
     }
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct MinecraftRange<T> {
     pub range_min: T,
     pub range_max: T

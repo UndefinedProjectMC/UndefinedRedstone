@@ -3,7 +3,7 @@ macro_rules! components_export {
     ($struct_name:ident, $($name:ident = $alias:expr,)*) => {
         // 定义主结构体
         #[allow(non_snake_case)]
-        #[derive(Deserialize)]
+        #[derive(Deserialize, Clone)]
         #[serde(untagged)]
         pub enum $struct_name {
             Map(Map<String, Value>)

@@ -2,8 +2,8 @@ use std::env;
 use bevy_app::{App, Plugin, PreStartup};
 use bevy_ecs::change_detection::{Res, ResMut};
 use bevy_ecs::prelude::{Commands, IntoSystemConfigs, Resource};
-use rust_i18n::t;
 use tokio::runtime::Runtime;
+use undefined_redstone_log::t;
 use undefined_redstone_network::URNetworkSettingsInner;
 use undefined_redstone_protocol::ProtocolInfo;
 use undefined_redstone_protocol::server::handshake::CompressionAlgorithm;
@@ -21,7 +21,7 @@ struct StartupTimestamp {
 
 fn startup(mut ms: ResMut<StartupTimestamp>, server: Res<Server>) {
     ms.start = chrono::Local::now().timestamp();
-    rust_i18n::set_locale("zh-CN");
+    undefined_redstone_log::set_locale("zh-CN");
     println!("{}", t!("console.startup", version = server.server_version));
     println!("{}", t!("console.warning"));
 }

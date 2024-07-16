@@ -11,7 +11,7 @@ use crate::entity::behavior_component::*;
 pub mod component;
 pub mod behavior_component;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct MinecraftEntityDescription {
     pub identifier: String,
     pub spawn_category: Option<String>,
@@ -27,7 +27,7 @@ pub struct MinecraftEntity {
     pub description: MinecraftEntityDescription,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct MinecraftEntityContent {
     #[serde(skip_deserializing)]
     pub format_version: String,

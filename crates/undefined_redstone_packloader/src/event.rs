@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use crate::filter::MinecraftFilterType;
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct MinecraftEvent {
     #[serde(default)]
     pub filters: MinecraftFilterType,

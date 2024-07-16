@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use crate::block_states::MinecraftBlockStates;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 #[serde(untagged)]
 pub enum MinecraftBlockType {
     BlockName(String),
@@ -14,7 +14,7 @@ impl Default for MinecraftBlockType {
     }
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct MinecraftBlock {
     pub name: String,
     pub states: MinecraftBlockStates,

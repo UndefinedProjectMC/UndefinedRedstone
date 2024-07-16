@@ -2,7 +2,7 @@ use serde::Deserialize;
 use serde_inline_default::serde_inline_default;
 use crate::filter::MinecraftFilterType;
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 #[serde(untagged)]
 pub enum MinecraftEntityTypes {
     #[default]
@@ -12,7 +12,7 @@ pub enum MinecraftEntityTypes {
 }
 
 #[serde_inline_default]
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct MinecraftEntityType {
     #[serde(default)]
     pub filters: MinecraftFilterType,

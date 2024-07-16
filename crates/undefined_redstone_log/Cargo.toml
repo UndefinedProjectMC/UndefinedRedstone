@@ -1,8 +1,7 @@
 [package]
-name = "undefined_redstone_type"
+name = "undefined_redstone_log"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anyhow = "*"
-serde = "1.0"
+rust-i18n = "3"
