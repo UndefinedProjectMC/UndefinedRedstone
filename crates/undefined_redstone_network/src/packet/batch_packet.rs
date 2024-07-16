@@ -16,6 +16,20 @@ impl BatchPacket {
         }
     }
 
+    pub fn from_vec(packets: Vec<MinecraftPacket>) -> Self {
+        Self {
+            packets,
+            index: 0,
+        }
+    }
+
+    pub fn single(packet: MinecraftPacket) -> Self {
+        Self {
+            packets: vec![packet],
+            index: 0,
+        }
+    }
+
     pub fn push_packet(&mut self, packet: MinecraftPacket) -> &mut Self {
         self.packets.push(packet);
         self

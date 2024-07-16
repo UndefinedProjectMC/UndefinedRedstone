@@ -5,7 +5,7 @@ use binary_util::BinaryIo;
 
 #[derive(Clone, Debug, BinaryIo)]
 pub struct PlayStatus {
-    pub(crate) status: u32,
+    pub status: u32,
 }
 
 impl PlayStatus {

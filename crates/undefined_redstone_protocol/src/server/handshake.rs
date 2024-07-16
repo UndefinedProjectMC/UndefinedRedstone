@@ -48,6 +48,16 @@ pub enum CompressionAlgorithm {
 }
 
 impl CompressionAlgorithm {
+    pub fn get_bytes(&self) -> u8 {
+        match self {
+            CompressionAlgorithm::Zlib => {
+                0x00
+            }
+            CompressionAlgorithm::Snappy => {
+                0x01
+            }
+        }
+    }
     pub fn decode(&self, buf: &[u8]) -> Result<Vec<u8>, Error> {
         match self {
             CompressionAlgorithm::Zlib => {
