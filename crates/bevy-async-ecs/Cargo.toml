@@ -1,0 +1,34 @@
+[package]
+name = "bevy-async-ecs"
+version = "0.6.0"
+authors = ["Mark Old <dlom234@gmail.com>"]
+edition = "2021"
+license = "MIT"
+description = "Asynchronous interface for Bevy ECS"
+repository = "https://github.com/dlom/bevy-async-ecs"
+keywords = ["bevy", "ecs", "async", "game"]
+categories = ["game-engines", "asynchronous"]
+
+[dependencies]
+bevy_app = { version = "0.14.0", default-features = false }
+bevy_core = { version = "0.14.0", default-features = false }
+bevy_utils = { version = "0.14.0", default-features = false }
+bevy_ecs = { version = "0.14.0", default-features = false }
+bevy_hierarchy = { version = "0.14.0", default-features = false, features = ["bevy_app"] }
+async-channel = "2"
+async-lock = "3"
+futures-lite = "2"
+
+[dev-dependencies]
+rand = { version = "0.8", default-features = false, features = ["small_rng", "getrandom"] }
+bevy = { version = "0.14.0", default-features = false, features = [
+	"bevy_winit",
+	"x11",
+	"bevy_gltf",
+	"bevy_scene",
+	"bevy_ui",
+	"png",
+	"ktx2",
+	"zstd",
+	"tonemapping_luts",
+] }

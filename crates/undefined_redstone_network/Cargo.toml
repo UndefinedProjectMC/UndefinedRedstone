@@ -5,9 +5,12 @@ edition = "2021"
 
 [dependencies]
 undefined_redstone_core = { path = "../undefined_redstone_core" }
+undefined_redstone_packloader = { path = "../undefined_redstone_packloader" }
 undefined_redstone_asyncmanager = { path = "../undefined_redstone_asyncmanager" }
 undefined_redstone_protocol = { path = "../undefined_redstone_protocol" }
 undefined_redstone_log = { path = "../undefined_redstone_log" }
+undefined_redstone_type = { path = "../undefined_redstone_type" }
+bevy-async-ecs = { path = "../bevy-async-ecs" }
 rak-rs = { path = "../RakNet-master", default-features = false, features = ["async_tokio", "mcpe"] }
 reqwest = { version = "0.12.5", features = ["json"] }
 binary-util = { path = "../binary_util" }
@@ -20,3 +23,4 @@ anyhow = "1.0.86"
 uuid = { version = "1.10.0", features = ["v4"] }
 serde = { version = "1.0.203", features = ["derive"] }
 serde_json = "1.0.120"
+flume = "0.11.0"

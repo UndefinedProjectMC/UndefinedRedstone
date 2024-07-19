@@ -5,7 +5,8 @@ use bevy_ecs::system::{Commands, Resource};
 use tokio::runtime::{EnterGuard, Runtime};
 use undefined_redstone_core::startup::URPreStartupSet;
 
-#[derive(Resource)]
+static mut ASYNC_MANAGER: Option<URAsyncManager> = None;
+
 pub struct URAsyncManager(HashMap<String, URAsyncManagerInner>);
 
 impl URAsyncManager {
@@ -13,8 +14,12 @@ impl URAsyncManager {
         Self(HashMap::new())
     }
 
-    pub fn insert(&mut self, key: &str) {
-        self.0.insert(key.to_string(), URAsyncManagerInner::new());
+    pub fn global() -> &'static Self {
+        unsafe { ASYNC_MANAGER.as_ref().unwrap() }
+    }
+
+    pub fn insert(&self, key: &str) {
+        unsafe { ASYNC_MANAGER.as_mut().unwrap().0.insert(key.to_string(), URAsyncManagerInner::new()) };
     }
 
     pub fn enter(&self, key: &str) -> Option<EnterGuard<'_>> {
@@ -36,12 +41,8 @@ impl URAsyncManagerInner {
 
 pub struct URAsyncManagerPlugin;
 
-fn init_async_manager(mut commands: Commands) {
-    commands.insert_resource(URAsyncManager::new());
-}
-
 impl Plugin for URAsyncManagerPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(PreStartup, init_async_manager.in_set(URPreStartupSet));
+        unsafe { ASYNC_MANAGER = Some(URAsyncManager::new()) };
     }
 }

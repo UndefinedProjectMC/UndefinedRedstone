@@ -78,7 +78,7 @@ impl Debug for MinecraftEntityContent {
     }
 }
 
-#[derive(Resource)]
+#[derive(Resource, Clone)]
 pub struct EntityContentManager {
     pub content: HashMap<String, Arc<MinecraftEntityContent>>,
 }
