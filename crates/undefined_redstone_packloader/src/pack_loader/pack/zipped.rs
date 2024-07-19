@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::{Error, Read};
 use std::ops::DerefMut;
 use std::path::PathBuf;
+use std::sync::Arc;
 use chrono::Local;
 use sha2::Digest;
 use zip::read::ZipFile;
@@ -65,7 +66,7 @@ impl ZippedResourcePack {
         }
     }
 
-    fn get_entities(zip: &mut ZipArchive<File>) -> HashMap<String, MinecraftEntityContent> {
+    fn get_entities(zip: &mut ZipArchive<File>) -> HashMap<String, Arc<MinecraftEntityContent>> {
         let files = get_dir_files(zip, "entities");
         let mut map = HashMap::new();
         for json in files {
@@ -74,7 +75,7 @@ impl ZippedResourcePack {
                 match types {
                     MinecraftJsonTypes::Empty => {}
                     MinecraftJsonTypes::MinecraftEntityContent(content) => {
-                        map.insert(content.description.identifier.clone(), content);
+                        map.insert(content.description.identifier.clone(), Arc::new(content));
                     }
                 }
             }

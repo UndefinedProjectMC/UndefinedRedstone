@@ -1,6 +1,9 @@
 use std::collections::HashMap;
 use std::fmt::{Debug, Formatter};
+use std::sync::Arc;
+use bevy_ecs::bundle::Bundle;
 use bevy_ecs::component::Component;
+use bevy_ecs::system::Resource;
 use bevy_ecs::world::{EntityWorldMut, World};
 use serde::Deserialize;
 use serde_json::{Map, Value};
@@ -37,16 +40,26 @@ pub struct MinecraftEntityContent {
 }
 
 impl MinecraftEntityContent {
-    pub fn spawn(self, world: &mut World) -> EntityWorldMut {
-        let mut entity = world.spawn(MinecraftEntity {
-            format_version: self.format_version,
-            description: self.description,
-        });
-        if let Some(components) = self.components {
-            components.spawn(&mut entity);
-        }
-        return entity;
+    pub fn spawn<'a>(&'a self, world: &'a mut World) -> EntityWorldMut {
+       let mut entity = world.spawn(MinecraftEntity {
+          format_version: self.format_version.clone(),
+          description: self.description.clone(),
+       });
+       if let Some(components) = self.components.clone() {
+          components.spawn(&mut entity);
+       }
+       return entity;
     }
+
+   pub fn insert<'a>(&'a self, entity: &'a mut EntityWorldMut) {
+      entity.insert(MinecraftEntity {
+         format_version: self.format_version.clone(),
+         description: self.description.clone(),
+      });
+      if let Some(components) = self.components.clone() {
+         components.spawn(entity);
+      }
+   }
 }
 
 impl Debug for MinecraftEntityContent {
@@ -63,6 +76,45 @@ impl Debug for MinecraftEntityContent {
             .field("components", &self.components)
             .finish()
     }
+}
+
+#[derive(Resource)]
+pub struct EntityContentManager {
+    pub content: HashMap<String, Arc<MinecraftEntityContent>>,
+}
+
+impl EntityContentManager {
+    pub fn new() -> Self {
+        Self {
+            content: HashMap::new(),
+        }
+    }
+
+   pub fn from_map(map: HashMap<String, Arc<MinecraftEntityContent>>) -> Self {
+      Self {
+         content: map,
+      }
+   }
+
+   pub fn extend(&mut self, map: HashMap<String, Arc<MinecraftEntityContent>>) {
+      self.content.extend(map);
+   }
+
+   pub fn get(&self, name: &str) -> Option<Arc<MinecraftEntityContent>> {
+      self.content.get(name).cloned()
+   }
+
+   pub fn insert(&mut self, name: String, content: Arc<MinecraftEntityContent>) {
+      self.content.insert(name, content);
+   }
+
+   pub fn remove(&mut self, name: &str) -> Option<Arc<MinecraftEntityContent>> {
+      self.content.remove(name)
+   }
+
+   pub fn len(&self) -> usize {
+      self.content.len()
+   }
 }
 
 components_export![

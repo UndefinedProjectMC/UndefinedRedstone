@@ -1,6 +1,9 @@
 use std::sync::Arc;
+use bevy_app::{App, Plugin, PreStartup};
+use bevy_ecs::prelude::IntoSystemConfigs;
 use binary_util::BinaryIo;
-use undefined_redstone_type::minecraft_version::MinecraftVersions;
+use undefined_redstone_core::startup::URStartupSet;
+use undefined_redstone_type::minecraft_version::{MinecraftVersion, MinecraftVersions};
 use undefined_redstone_type::protocol_versions::MinecraftProtocolVersions;
 use crate::client::*;
 use crate::client::login::*;
@@ -53,4 +56,20 @@ pub enum MinecraftPacket {
     RequestNetworkSettings(RequestNetworkSettings) = 0xc1,
     ClientCacheStatus(ClientCacheStatus) = 0x81,
     NetworkSettings(NetworkSettings) = 0x8f,
+}
+
+/// warning: This is a temp func!
+pub(crate) fn init_protocol() {
+    ProtocolInfo::new_global(
+        MinecraftProtocolVersions::single(686),
+        MinecraftVersions::single(MinecraftVersion::new(1, 21, 2))
+    )
+}
+
+pub struct URProtocolPlugin;
+
+impl Plugin for URProtocolPlugin {
+    fn build(&self, app: &mut App) {
+        app.add_systems(PreStartup, init_protocol.in_set(URStartupSet));
+    }
 }

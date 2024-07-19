@@ -1,0 +1,14 @@
+[package]
+name = "undefined_redstone_startup"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+undefined_redstone_core = { path = "../undefined_redstone_core" }
+undefined_redstone_asyncmanager = { path = "../undefined_redstone_asyncmanager" }
+undefined_redstone_packloader = { path = "../undefined_redstone_packloader" }
+undefined_redstone_network = { path = "../undefined_redstone_network" }
+undefined_redstone_protocol = { path = "../undefined_redstone_protocol" }
+undefined_redstone_log = { path = "../undefined_redstone_log" }
+bevy_ecs = "0.14.0"
+bevy_app = "0.14.0"

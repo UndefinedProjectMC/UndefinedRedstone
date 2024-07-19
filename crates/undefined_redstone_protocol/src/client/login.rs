@@ -111,6 +111,7 @@ impl Reader<Login> for Login {
         let skin_data = String::from_utf8_lossy(skin_data).to_string();
         let skin_data = skin_data.as_str();
         let skin_token = decode(skin_data, 1).ok_or(Error::other("Cannot decode json"))?;
+        println!("{}", skin_token.to_string());
         if let Some(id) = skin_token.get("ClientRandomId") {
             client_id = id.as_i64().ok_or(Error::other("Cannot decode json"))?;
         }

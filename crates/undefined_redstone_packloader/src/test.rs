@@ -1,9 +1,12 @@
 use std::fs;
-use chrono::Local;
+use bevy_ecs::world::World;
 use regex::Regex;
 use crate::{MinecraftJsonTypes, MinecraftJsonTypesStruct};
+use undefined_redstone_type::display_name::DisplayName;
+use crate::entity::EntityContentManager;
 use crate::pack_loader::PackLoaderTrait;
 use crate::pack_loader::zipped_loader::ResourcePackZippedLoader;
+use crate::pack_manager::ResourcePackManager;
 
 #[test]
 fn create_component() {
@@ -44,9 +47,19 @@ fn test_component() {
 
 #[test]
 fn test_loader() {
-    let loader = ResourcePackZippedLoader::new("C:/Users/NiuBi/Desktop/resource_packs/");
+    let mut world = World::new();
+
+    //加载行为包
+    let loader = ResourcePackZippedLoader::new("D:/RustRoverProjects/undefined_redstone/behavior_packs/");
     let vec = loader.get_resource_packs();
-    for i in vec {
-        println!("{:#?}", i)
-    }
+
+    //初始化manager
+    let manager = ResourcePackManager::from_vec(vec);
+    let content_manager = EntityContentManager::from_map(manager.get_entities());
+
+    //生成玩家
+    let content = content_manager.get("minecraft:player").unwrap();
+    println!("{:#?}", content);
+    let mut player = content.spawn(&mut world);
+    player.insert(DisplayName("YouZikua".to_string()));
 }

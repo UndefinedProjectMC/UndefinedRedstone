@@ -1,9 +1,14 @@
 _version: 1
 console.startup: "欢迎使用 [Undefined RedStone - 界游服务端] 版本号: %{version}"
-console.warning: "警告: 此服务端为UndefinedLand服务器专用, 未经允许禁止分发."
-console.resource_pack: "[加载资源包] 已加载 %{count} 个资源包"
-console.behavior_pack: "[加载资源包] 已加载 %{count} 个行为包"
+console.warning: "警告: 此服务端为Alpha版本, 不排除有Bug及漏洞的可能, 请勿在生产环境中使用!"
+console.resource_pack: "[加载资源包] 已加载 %{count} 个资源包, 耗时: %{ms}ms"
+console.behavior_pack: "[加载资源包] 已加载 %{count} 个行为包, 耗时: %{ms}ms"
+console.resource_pack.entities: "[加载资源包] 共计加载 %{count} 个实体"
 console.level: "[世界生成] 已生成 %{level} 世界"
 console.ipv4: "[网络初始化] 已开放Ipv4端口: %{port}"
 console.ipv6: "[网络初始化] 已开放Ipv6端口: %{port}"
 console.finish: "服务端已启动完成(耗时: %{ms}ms). 输入 /help 查看我的世界指令帮助, 输入 :help 查看服务端指令帮助."
+
+console.player.join: "[玩家进入] %{player}(IP: %{ip}[属地: %{ip_locate}], 系统: %{os}, 设备: %{device}, XUID: %{xuid}) 进入了服务器"
+console.player.spawn: "[玩家生成] %{player}(XUID: %{xuid}) 生成在 %{world} 世界, 坐标: %{pos}"
+console.player.quit: "[玩家退出] %{player}(IP: %{ip}[属地: %{ip_locate}], 系统: %{os}, 设备: %{device}, XUID: %{xuid}) 退出了服务器"

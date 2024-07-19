@@ -4,5 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+undefined_redstone_core = { path = "../undefined_redstone_core" }
+tokio = "1.38.0"
 bevy_ecs = "0.14.0"
 bevy_app = "0.14.0"

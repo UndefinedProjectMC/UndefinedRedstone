@@ -4,10 +4,14 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+undefined_redstone_core = { path = "../undefined_redstone_core" }
 undefined_redstone_type = { path = "../undefined_redstone_type" }
+undefined_redstone_log = { path = "../undefined_redstone_log" }
+rust-i18n = "3"
 serde_json = "1.0"
 uuid = "*"
 bevy_ecs = "0.14.0"
+bevy_app = "0.14.0"
 serde = { version = "1.0.203", features = ["derive"] }
 serde-inline-default = "0.2"
 regex = "*"

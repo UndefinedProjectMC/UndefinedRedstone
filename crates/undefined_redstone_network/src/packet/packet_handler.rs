@@ -4,12 +4,30 @@ use undefined_redstone_protocol::client::resource_packs::ResourcePackClientRespo
 use undefined_redstone_protocol::server::handshake::{NetworkSettings, ServerToClientHandshake};
 use undefined_redstone_protocol::server::PlayStatus;
 use undefined_redstone_protocol::server::resource_packs::{ExperimentData, ResourcePackInfo, ResourcePackStack};
+use crate::packet::batch_packet::BatchPacket;
 use crate::packet::packet_factory::{PacketFactory, PacketFactoryStatus};
+
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub enum ServerPacketHandlerStatus {
+    Receiving,
+    Closed,
+    CreatePlayer,
+}
+
 pub struct ServerPacketHandler;
 
 impl ServerPacketHandler {
 
-    pub async fn handle_packet(factory: &mut PacketFactory, packet: MinecraftPacket) -> anyhow::Result<()> {
+    pub async fn handle_packet(factory: &mut PacketFactory, packets: anyhow::Result<BatchPacket>) -> anyhow::Result<ServerPacketHandlerStatus> {
+        let packets = packets?;
+        let mut result = Err(anyhow::Error::msg("no packets handle"));
+        for packet in packets {
+            result = Self::handle_packet0(factory, packet).await;
+        }
+        result
+    }
+
+    async fn handle_packet0(factory: &mut PacketFactory, packet: MinecraftPacket) -> anyhow::Result<ServerPacketHandlerStatus> {
         match packet {
             MinecraftPacket::RequestNetworkSettings(request) => {
                 factory.status = PacketFactoryStatus::Logging;
@@ -27,7 +45,7 @@ impl ServerPacketHandler {
                     }
                 ), true).await?;
                 factory.enable_compression();
-                return Ok(());
+                return Ok(ServerPacketHandlerStatus::Receiving);
             }
             MinecraftPacket::Login(login) => {
                 if factory.status == PacketFactoryStatus::Logging {
@@ -51,7 +69,7 @@ impl ServerPacketHandler {
                     if temp == "rcon" || temp == "console" {
                         factory.disconnect("disconnectionScreen.invalidName", false).await.unwrap();
                         //self.disconnected = true;
-                        return Ok(());
+                        return Ok(ServerPacketHandlerStatus::Closed);
                     }
                     factory.data.username = login.username;
                     factory.data.uuid = login.identity;
@@ -82,7 +100,7 @@ impl ServerPacketHandler {
                     ), true).await?;
                     //启用加密
                     factory.enable_encryption(secret_key)?;
-                    return Ok(());
+                    return Ok(ServerPacketHandlerStatus::Receiving);
                 }
             }
             MinecraftPacket::ClientToServerHandshake(_) => {
@@ -109,7 +127,7 @@ impl ServerPacketHandler {
                     ), true).await?;
 
                     if factory.disconnect {
-                        return Ok(());
+                        return Ok(ServerPacketHandlerStatus::Closed);
                     }
                     //加载材质包阶段
                     factory.status = PacketFactoryStatus::ResourcePack;
@@ -128,7 +146,7 @@ impl ServerPacketHandler {
                         }
                     ), true).await?;
                 }
-                return Ok(());
+                return Ok(ServerPacketHandlerStatus::Receiving);
             }
             MinecraftPacket::ResourcePackClientResponse(packet) => {
                 println!("resource pack client response");
@@ -175,6 +193,7 @@ impl ServerPacketHandler {
                         println!("completed");
                         if factory.status == PacketFactoryStatus::ResourcePack {
                             factory.status = PacketFactoryStatus::PreSpawn;
+                            return Ok(ServerPacketHandlerStatus::CreatePlayer);
                         }
                     }
                     _ => {}
@@ -182,6 +201,6 @@ impl ServerPacketHandler {
             }
             _ => {}
         }
-        return Ok(());
+        return Ok(ServerPacketHandlerStatus::Receiving);
     }
 }

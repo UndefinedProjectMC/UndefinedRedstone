@@ -7,15 +7,7 @@ use uuid::Uuid;
 use crate::packet::batch_packet::BatchPacket;
 use crate::packet::decoder::PackerDecoder;
 use crate::packet::encoder::PackerEncoder;
-use crate::packet::packet_handler::ServerPacketHandler;
 use crate::URNetworkSettings;
-
-#[derive(Copy, Clone, Eq, PartialEq)]
-pub enum PacketFactoryRecvStatus {
-    Receiving,
-    Closed,
-    CreatePlayer,
-}
 
 pub struct PacketFactoryData {
     pub protocol_version: u32,
@@ -59,7 +51,7 @@ pub enum PacketFactoryStatus {
 pub struct PacketFactory {
     pub(crate) status: PacketFactoryStatus,
     pub(crate) disconnect: bool,
-    connection: Connection,
+    pub(crate) connection: Connection,
     encoder: PackerEncoder,
     decoder: PackerDecoder,
     encryption: Option<MinecraftPacketEncryption>,
@@ -98,26 +90,9 @@ impl PacketFactory {
         Ok(())
     }
 
-    async fn recv_result(&mut self) -> anyhow::Result<BatchPacket> {
+    pub async fn recv_packet(&mut self) -> anyhow::Result<BatchPacket> {
         let packet_data = self.connection.recv().await?;
         self.decoder.decode(packet_data, self.encryption.as_mut()).await
-    }
-
-    pub async fn recv_packet(&mut self) -> anyhow::Result<PacketFactoryRecvStatus> {
-        let result = self.recv_result().await;
-        if let Ok(batch_packet) = result {
-            for packet in batch_packet {
-                ServerPacketHandler::handle_packet(self, packet).await?;
-            }
-            if self.disconnect {
-                Ok(PacketFactoryRecvStatus::Closed)
-            }else {
-                Ok(PacketFactoryRecvStatus::Receiving)
-            }
-        }else {
-            //println!("error: {:?}", result.err().unwrap());
-            Ok(PacketFactoryRecvStatus::Closed)
-        }
     }
 
     pub async fn send_packet(&mut self, packet: MinecraftPacket, immediate: bool) -> anyhow::Result<()> {

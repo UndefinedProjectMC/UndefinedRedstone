@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 anyhow = "*"
 serde = "1.0"
+bevy_ecs = "0.14.0"
