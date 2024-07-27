@@ -7,8 +7,9 @@ edition = "2021"
 undefined_redstone_core = { path = "../undefined_redstone_core" }
 undefined_redstone_asyncmanager = { path = "../undefined_redstone_asyncmanager" }
 undefined_redstone_packloader = { path = "../undefined_redstone_packloader" }
+undefined_redstone_world = { path = "../undefined_redstone_world" }
 undefined_redstone_network = { path = "../undefined_redstone_network" }
-undefined_redstone_protocol = { path = "../undefined_redstone_protocol" }
 undefined_redstone_log = { path = "../undefined_redstone_log" }
+bevy-async-ecs = { path = "../bevy-async-ecs" }
 bevy_ecs = "0.14.0"
 bevy_app = "0.14.0"

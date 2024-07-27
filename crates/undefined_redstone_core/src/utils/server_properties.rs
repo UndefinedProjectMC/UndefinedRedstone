@@ -7,7 +7,7 @@ use std::sync::Arc;
 use bevy_ecs::system::Resource;
 use toml::Table;
 use rand::random;
-use rak_rs::mcpe::motd::Gamemode;
+use undefined_redstone_type::gamemode::Gamemode;
 use rak_rs::Motd;
 
 #[derive(Clone, Debug, Resource)]

@@ -12,6 +12,7 @@ pub mod event;
 use std::collections::HashMap;
 use std::net::ToSocketAddrs;
 use std::{net::SocketAddr, sync::Arc};
+use arc_swap::{ArcSwap, ArcSwapAny};
 
 #[cfg(feature = "async_std")]
 use async_std::{
@@ -218,7 +219,7 @@ pub struct Listener {
     /// If mcpe is true, this is the default MOTD, this is
     /// the default MOTD to send to the client. You can change this later by setting
     /// a motd in the `Conn` struct.
-    pub motd: Motd,
+    pub motd: Arc<ArcSwapAny<Arc<Motd>>>,
     /// A server Id, passed in unconnected pong.
     pub id: u64,
     /// Supported versions
@@ -281,7 +282,7 @@ impl Listener {
         rakrs_debug!(true, "listener: Bound to {}", address);
 
         let server_id: u64 = rand::random();
-        let motd = Motd::new(server_id, format!("{}", address.port()));
+        let motd = Arc::new(ArcSwap::from(Arc::new(Motd::new(server_id, format!("{}", address.port())))));
 
         // This channel is a Communication channel for when `Connection` structs are initialized.
         let (send_comm, recv_comm) = bounded::<Connection>(10);
@@ -391,7 +392,8 @@ impl Listener {
                                     // let (resp_tx, resp_rx) =
                                     //     oneshot::channel::<ServerEventResponse>();
                                     #[cfg(feature = "mcpe")]
-                                    let motd: Motd = motd_default.clone();
+                                    let motd = motd_default.load();
+                                    let motd = motd.as_ref().clone();
 
                                     // if let Err(e) = send_evt.try_send((
                                     //         ServerEvent::RefreshMotdRequest(origin, motd.clone()),
@@ -724,6 +726,16 @@ impl Listener {
         self.serving = false;
 
         Ok(())
+    }
+
+    pub fn update_player_online(&self, number: i32) {
+        let mut motd = self.motd.load().as_ref().clone();
+        let mut number = (motd.player_online as i64) + (number as i64);
+        if number < 0 {
+            number = 0;
+        }
+        motd.player_online = number as u32;
+        self.motd.store(Arc::new(motd));
     }
 }
 

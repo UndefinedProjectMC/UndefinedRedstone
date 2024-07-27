@@ -21,10 +21,14 @@ pub struct StartupTimestamp {
 }
 
 
-fn startup(mut ms: ResMut<StartupTimestamp>, server: Res<Server>) {
+fn startup(mut commands: Commands) {
+    let mut ms = StartupTimestamp::default();
+    let server = Server::default();
     ms.start = chrono::Local::now().timestamp_millis();
     println!("{}", t!("console.startup", version = server.server_version));
     println!("{}", t!("console.warning"));
+    commands.insert_resource(ms);
+    commands.insert_resource(server);
 }
 
 fn init_log() {
@@ -47,8 +51,6 @@ pub struct URStartupPlugin;
 impl Plugin for URStartupPlugin {
     fn build(&self, app: &mut App) {
         app.configure_sets(PreStartup, (URLogInitSet, URPreStartupSet.after(URLogInitSet), URStartupSet.after(URPreStartupSet)))
-            .init_resource::<Server>()
-            .init_resource::<StartupTimestamp>()
             .add_systems(PreStartup, init_log.in_set(URLogInitSet))
             .add_systems(PreStartup, startup.in_set(URPreStartupSet))
             .add_systems(PreStartup, init_properties.in_set(URStartupSet));

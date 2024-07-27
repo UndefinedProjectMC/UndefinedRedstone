@@ -1,8 +1,8 @@
-use std::sync::Arc;
-use binary_util::interfaces::Writer;
-use undefined_redstone_protocol::encryption::MinecraftPacketEncryption;
-use undefined_redstone_protocol::server::handshake::CompressionAlgorithm;
-use crate::packet::batch_packet::BatchPacket;
+use binary_util::ByteReader;
+use binary_util::interfaces::{Reader, Writer};
+use crate::encryption::MinecraftPacketEncryption;
+use crate::packet::batch_packet::{BatchPacket, OriginBatchPacket};
+use crate::protocol::server::handshake::CompressionAlgorithm;
 
 pub struct PackerEncoder {
     compression_algorithm: Option<CompressionAlgorithm>,
@@ -20,6 +20,10 @@ impl PackerEncoder {
     }
 
     pub fn encode(&self, packet: BatchPacket, encryption: Option<&mut MinecraftPacketEncryption>) -> anyhow::Result<Vec<u8>> {
+        self.encode_origin(OriginBatchPacket::read(&mut ByteReader::from(packet.write_to_bytes()?))?, encryption)
+    }
+
+    pub fn encode_origin(&self, packet: OriginBatchPacket, encryption: Option<&mut MinecraftPacketEncryption>) -> anyhow::Result<Vec<u8>> {
         let bytes = packet.write_to_bytes()?;
         let bytes = bytes.as_slice().to_vec();
         let mut bytes = bytes[1..].to_vec();

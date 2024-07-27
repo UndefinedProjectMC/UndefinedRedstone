@@ -7,13 +7,15 @@ edition = "2021"
 undefined_redstone_core = { path = "../undefined_redstone_core" }
 undefined_redstone_packloader = { path = "../undefined_redstone_packloader" }
 undefined_redstone_asyncmanager = { path = "../undefined_redstone_asyncmanager" }
-undefined_redstone_protocol = { path = "../undefined_redstone_protocol" }
 undefined_redstone_log = { path = "../undefined_redstone_log" }
 undefined_redstone_type = { path = "../undefined_redstone_type" }
-bevy-async-ecs = { path = "../bevy-async-ecs" }
+undefined_redstone_nbt = { path = "../undefined_redstone_nbt" }
 rak-rs = { path = "../RakNet-master", default-features = false, features = ["async_tokio", "mcpe"] }
-reqwest = { version = "0.12.5", features = ["json"] }
+bevy-async-ecs = { path = "../bevy-async-ecs" }
 binary-util = { path = "../binary_util" }
+flate2 = { version = "1.0", features = ["zlib-ng"], default-features = false }
+reqwest = { version = "0.12.5", features = ["json"] }
+openssl = { version = "0.10", features = ["vendored"] }
 rust-i18n = "3"
 bevy_ecs = "0.14.0"
 bevy_app = "0.14.0"
@@ -24,3 +26,11 @@ uuid = { version = "1.10.0", features = ["v4"] }
 serde = { version = "1.0.203", features = ["derive"] }
 serde_json = "1.0.120"
 flume = "0.11.0"
+arc-swap = "1.7.1"
+snap = "1"
+sha2 = "0.10.8"
+hmac = "0.12.0"
+base64 = "0.22.1"
+jwt = "0.16.0"
+jsonwebtoken = "9.3.0"
+p384 = "*"

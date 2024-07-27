@@ -2,6 +2,7 @@ use std::io::Error;
 use binary_util::{ByteReader, ByteWriter};
 use binary_util::interfaces::{Reader, Writer};
 use undefined_redstone_packloader::pack::ResourcePack;
+use undefined_redstone_type::experiment::ExperimentData;
 
 #[derive(Clone, Debug)]
 pub struct ResourcePackInfo {
@@ -50,20 +51,6 @@ impl Reader<ResourcePackInfo> for ResourcePackInfo {
         todo!()
     }
 }
-#[derive(Clone, Debug)]
-pub struct ExperimentData {
-    pub name: String,
-    pub is_enabled: bool
-}
-
-impl ExperimentData {
-    pub fn new(name: &str, is_enabled: bool) -> Self {
-        Self {
-            name: name.to_string(),
-            is_enabled,
-        }
-    }
-}
 
 #[derive(Clone, Debug)]
 pub struct ResourcePackStack {
@@ -97,7 +84,7 @@ impl Writer for ResourcePackStack {
         buf.write_string(self.game_version.as_str())?;
         buf.write_i32_le(self.experiments.len() as i32)?;
         for experiment in &self.experiments {
-            buf.write_string(experiment.name.as_str())?;
+            buf.write_string(experiment.name)?;
             buf.write_bool(experiment.is_enabled)?;
         }
         buf.write_bool(true)?;//Were experiments previously toggled

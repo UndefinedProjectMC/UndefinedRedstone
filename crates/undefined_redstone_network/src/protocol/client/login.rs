@@ -1,7 +1,7 @@
 use std::io::Error;
 use std::str::FromStr;
 use base64::Engine;
-use binary_util::{ByteReader, ByteWriter};
+use binary_util::{BinaryIo, ByteReader, ByteWriter};
 use binary_util::interfaces::{Reader, Writer};
 use hmac::{Hmac, Mac};
 use jwt::{Header, Token, VerifyWithKey};
@@ -176,4 +176,9 @@ fn decode(token: &str, index: usize) -> Option<Value> {
         let decode = decode.as_slice();
         serde_json::from_slice::<Value>(decode).ok()
     }
+}
+
+#[derive(BinaryIo, Clone, Debug)]
+pub struct SetLocalPlayerAsInitialized {
+
 }

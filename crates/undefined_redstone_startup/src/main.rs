@@ -1,19 +1,21 @@
 use bevy_app::{App, PostStartup, ScheduleRunnerPlugin};
 use bevy_ecs::prelude::IntoSystemConfigs;
+use bevy_async_ecs::AsyncEcsPlugin;
 use undefined_redstone_asyncmanager::URAsyncManagerPlugin;
 use undefined_redstone_core::startup::{finish_startup, URStartupPlugin};
 use undefined_redstone_network::URNetworkPlugin;
 use undefined_redstone_packloader::URPackLoaderPlugin;
-use undefined_redstone_protocol::URProtocolPlugin;
+use undefined_redstone_world::URWorldPlugin;
 
 fn main() {
     App::new()
         .add_plugins(ScheduleRunnerPlugin::run_loop(std::time::Duration::from_secs_f64(1.0 / 20.0)))
+        .add_plugins(AsyncEcsPlugin)
         .add_plugins(URStartupPlugin)
         .add_plugins(URAsyncManagerPlugin)
         .add_plugins(URPackLoaderPlugin)
+        .add_plugins(URWorldPlugin)
         .add_plugins(URNetworkPlugin)
-        .add_plugins(URProtocolPlugin)
         .add_systems(PostStartup, finish_startup)
         //.add_systems(PostStartup, command.after(finish_startup))
         .run();

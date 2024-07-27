@@ -21,6 +21,7 @@ async_std = [ "async-std" ]
 async_tokio = [ "tokio" ]
 
 [dependencies]
+undefined_redstone_type = { path = "../undefined_redstone_type" }
 rand = "0.8.3"
 binary-util = "0.3.4"
 tokio = { version = "1.28.2", features = ["full"], optional = true }
@@ -28,3 +29,4 @@ byteorder = "1.4.3"
 futures = "0.3.19"
 futures-executor = "0.3.19"
 async-std = { version = "1.12.0", optional = true, features = [ "unstable" ] }
+arc-swap = "1.7.1"

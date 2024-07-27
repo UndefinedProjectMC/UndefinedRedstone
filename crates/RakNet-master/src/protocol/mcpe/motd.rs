@@ -1,46 +1,6 @@
 use binary_util::interfaces::{Reader, Writer};
 use binary_util::io::{ByteReader, ByteWriter};
-
-#[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Gamemode {
-    Survival = 0,
-    Creative,
-    Adventure,
-    Spectator,
-}
-
-impl Gamemode {
-    pub fn as_str(&self) -> &'static str {
-        match self {
-            Gamemode::Survival => "Survival",
-            Gamemode::Creative => "Creative",
-            Gamemode::Adventure => "Adventure",
-            Gamemode::Spectator => "Spectator",
-        }
-    }
-
-    pub fn to_i32(&self) -> i32 {
-        match self {
-            Gamemode::Survival => 0,
-            Gamemode::Creative => 1,
-            Gamemode::Adventure => 2,
-            Gamemode::Spectator => 6
-        }
-    }
-}
-
-impl std::fmt::Display for Gamemode {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let v = match *self {
-            Gamemode::Survival => "0",
-            Gamemode::Creative => "1",
-            Gamemode::Adventure => "2",
-            Gamemode::Spectator => "3",
-        };
-        write!(f, "{}", v)
-    }
-}
+use undefined_redstone_type::gamemode::Gamemode;
 
 /// Protocol wise, motd is just a string
 /// However we're using this struct to represent the motd

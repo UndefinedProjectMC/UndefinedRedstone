@@ -103,7 +103,7 @@ impl CommandQueueSender {
 	/// Sends an `CommandQueue` directly to the Bevy `World`, where they will be applied during
 	/// the `Last` schedule.
 	pub async fn send_queue(&self, inner_queue: CommandQueue) {
-		self.0.send(inner_queue).await.unwrap_or_else(die)
+		self.0.send(inner_queue).await.unwrap()
 	}
 
 	/// Sends a (boxed) `Command` directly to the Bevy `World`, where they it be applied during

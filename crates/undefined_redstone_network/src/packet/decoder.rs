@@ -1,10 +1,8 @@
-use std::fmt::Error;
-use std::sync::Arc;
 use binary_util::ByteReader;
 use binary_util::interfaces::Reader;
-use undefined_redstone_protocol::encryption::MinecraftPacketEncryption;
-use undefined_redstone_protocol::server::handshake::CompressionAlgorithm;
-use crate::packet::batch_packet::BatchPacket;
+use crate::encryption::MinecraftPacketEncryption;
+use crate::packet::batch_packet::{BatchPacket, OriginBatchPacket};
+use crate::protocol::server::handshake::CompressionAlgorithm;
 
 pub struct PackerDecoder {
     compression_algorithm: Option<CompressionAlgorithm>,
@@ -22,6 +20,10 @@ impl PackerDecoder {
     }
 
     pub async fn decode(&self, packet_data: Vec<u8>, encryption: Option<&mut MinecraftPacketEncryption>) -> anyhow::Result<BatchPacket> {
+        Ok(self.decode_origin(packet_data, encryption).await?.to_batch_packet()?)
+    }
+
+    pub async fn decode_origin(&self, packet_data: Vec<u8>, encryption: Option<&mut MinecraftPacketEncryption>) -> anyhow::Result<OriginBatchPacket> {
         let mut data = packet_data.clone();
         if let Some(encryption) = encryption {
             let temp = encryption.decode(&packet_data[1..]).await?;
@@ -45,6 +47,6 @@ impl PackerDecoder {
             vec.extend(bytes);
             data = vec;
         }
-        Ok(BatchPacket::read(&mut ByteReader::from(data))?)
+        Ok(OriginBatchPacket::read(&mut ByteReader::from(data))?)
     }
 }

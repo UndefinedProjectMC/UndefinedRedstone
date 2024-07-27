@@ -9,8 +9,8 @@ name = "UndefinedRedstore Server"
 motd = "UndefinedRedstore Server"
 max_player = 20
 gamemode = "survival"
-ipv4_port = 25565
-ipv6_port = 25565
+ipv4_port = 19132
+ipv6_port = 19132
 
 [experimental_gameplay]
 data_driven_items = true

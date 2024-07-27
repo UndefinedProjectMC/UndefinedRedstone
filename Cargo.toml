@@ -9,8 +9,9 @@ members = [
     "crates/undefined_redstone_type",
     "crates/undefined_redstone_molang",
     "crates/undefined_redstone_proc",
-    "crates/undefined_redstone_protocol",
     "crates/undefined_redstone_asyncmanager",
     "crates/undefined_redstone_log",
     "crates/undefined_redstone_startup",
+    "crates/undefined_redstone_world",
+    "crates/undefined_redstone_eventbus", "crates/undefined_redstone_nbt", "crates/undefined_redstone_materials", "crates/undefined_redstone_plugin",
 ]

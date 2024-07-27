@@ -184,10 +184,10 @@ pub struct Connection {
     pub send_queue: Arc<RwLock<SendQueue>>,
     /// The queue used to recieve packets, this is read from by the server.
     /// This is only used internally.
-    pub recv_queue: Arc<Mutex<RecvQueue>>,
+    recv_queue: Arc<Mutex<RecvQueue>>,
     /// The network channel, this is where the connection will be recieving it's packets.
     /// This is interfaced to provide the api for `Connection::recv()`
-    internal_net_recv: ConnNetChan,
+    pub internal_net_recv: ConnNetChan,
     /// A notifier for when the connection should close.
     /// This is used for absolute cleanup withtin the connection
     disconnect: Arc<Notify>,

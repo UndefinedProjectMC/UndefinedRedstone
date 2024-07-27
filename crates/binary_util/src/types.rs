@@ -43,7 +43,7 @@ macro_rules! impl_type {
 ///
 /// #[derive(BinaryIo)]
 /// struct MyStruct {
-///    test: LE<u32>,
+///    tests: LE<u32>,
 /// }
 /// ```
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -78,7 +78,7 @@ impl_type!(LE<f64>, f64);
 ///
 /// #[derive(BinaryIo)]
 /// struct MyStruct {
-///   test: BE<u32>,
+///   tests: BE<u32>,
 /// }
 /// ```
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -114,7 +114,7 @@ impl_type!(BE<f64>, f64);
 ///
 /// #[derive(BinaryIo)]
 /// struct MyStruct {
-///    test: u24,
+///    tests: u24,
 /// }
 /// ```
 #[allow(non_camel_case_types)]
@@ -150,7 +150,7 @@ impl_type!(u24, u32);
 ///
 /// #[derive(BinaryIo)]
 /// struct MyStruct {
-///   test: i24,
+///   tests: i24,
 /// }
 /// ```
 #[allow(non_camel_case_types)]

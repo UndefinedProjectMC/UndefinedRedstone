@@ -478,6 +478,55 @@ impl ByteReader {
         }
     }
 
+    pub fn read_i8_bytes(&mut self, len: usize) -> Result<Vec<i8>, std::io::Error> {
+        return if can_read!(self, len) {
+            let b = self.buf.slice(..len);
+            let b = b.iter().map(|&n| n as i8).collect();
+            self.buf.advance(len);
+            Ok(b)
+        } else {
+            Err(Error::new(std::io::ErrorKind::UnexpectedEof, ERR_EOB))
+        }
+    }
+
+    pub fn read_i32_le_array(&mut self, len: usize) -> Result<Vec<i32>, std::io::Error> {
+        let vec_len = len * 4;
+        return if can_read!(self, vec_len) {
+            let b = self.buf.slice(..vec_len);
+
+            let mut vec = Vec::with_capacity(len);
+            for i in (0..vec_len).step_by(4) {
+                let mut array = [0u8; 4];
+                array.copy_from_slice(&b[i..i + 4]);
+                vec.push(i32::from_le_bytes(array));
+            }
+
+            self.buf.advance(vec_len);
+            Ok(vec)
+        } else {
+            Err(Error::new(std::io::ErrorKind::UnexpectedEof, ERR_EOB))
+        }
+    }
+
+    pub fn read_i64_le_array(&mut self, len: usize) -> Result<Vec<i64>, std::io::Error> {
+        let vec_len = len * 8;
+        return if can_read!(self, vec_len) {
+            let b = self.buf.slice(..vec_len);
+
+            let mut vec = Vec::with_capacity(len);
+            for i in (0..vec_len).step_by(8) {
+                let mut array = [0u8; 8];
+                array.copy_from_slice(&b[i..i + 8]);
+                vec.push(i64::from_le_bytes(array));
+            }
+
+            self.buf.advance(vec_len);
+            Ok(vec)
+        } else {
+            Err(Error::new(std::io::ErrorKind::UnexpectedEof, ERR_EOB))
+        }
+    }
+
     /// Reads a slice from the stream into the slice passed by the caller.
     /// For reading a prefixed sized slice, use `read_sized_slice` instead.
     pub fn read(&mut self, buffer: &mut [u8]) -> Result<(), std::io::Error> {

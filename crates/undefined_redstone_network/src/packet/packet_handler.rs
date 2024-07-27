@@ -1,11 +1,12 @@
-use undefined_redstone_protocol::encryption::MinecraftEncryption;
-use undefined_redstone_protocol::{MinecraftPacket, ProtocolInfo};
-use undefined_redstone_protocol::client::resource_packs::ResourcePackClientResponse;
-use undefined_redstone_protocol::server::handshake::{NetworkSettings, ServerToClientHandshake};
-use undefined_redstone_protocol::server::PlayStatus;
-use undefined_redstone_protocol::server::resource_packs::{ExperimentData, ResourcePackInfo, ResourcePackStack};
+use undefined_redstone_type::experiment::ExperimentData;
+use crate::encryption::MinecraftEncryption;
 use crate::packet::batch_packet::BatchPacket;
 use crate::packet::packet_factory::{PacketFactory, PacketFactoryStatus};
+use crate::protocol::{MinecraftPacket, ProtocolInfo};
+use crate::protocol::client::resource_packs::ResourcePackClientResponse;
+use crate::protocol::server::handshake::{NetworkSettings, ServerToClientHandshake};
+use crate::protocol::server::PlayStatus;
+use crate::protocol::server::resource_packs::{ResourcePackInfo, ResourcePackStack};
 
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum ServerPacketHandlerStatus {
@@ -34,7 +35,7 @@ impl ServerPacketHandler {
                 let protocol_version = request.protocol_version;
                 println!("Protocol Version: {}", protocol_version);
                 factory.protocol_version = protocol_version;
-                let compression_algorithm = factory.settings.0.compression_algorithm;
+                let compression_algorithm = factory.settings.compression_algorithm;
                 factory.send_packet(MinecraftPacket::NetworkSettings(
                     NetworkSettings {
                         compression_threshold: 1,
@@ -162,22 +163,22 @@ impl ServerPacketHandler {
                          */
                         let mut experiments = vec![];
                         experiments.push(
-                            ExperimentData::new("data_driven_items", true)
+                            ExperimentData::DATA_DRIVEN_ITEMS.set_enabled(true)
                         );
                         experiments.push(
-                            ExperimentData::new("data_driven_biomes", true)
+                            ExperimentData::DATA_DRIVEN_BIOMES.set_enabled(true)
                         );
                         experiments.push(
-                            ExperimentData::new("upcoming_creator_features", true)
+                            ExperimentData::UPCOMING_CREATOR_FEATURES.set_enabled(true)
                         );
                         experiments.push(
-                            ExperimentData::new("gametest", true)
+                            ExperimentData::GAMETEST.set_enabled(true)
                         );
                         experiments.push(
-                            ExperimentData::new("experimental_molang_features", true)
+                            ExperimentData::EXPERIMENTAL_MOLOANG_FEATURE.set_enabled(true)
                         );
                         experiments.push(
-                            ExperimentData::new("cameras", true)
+                            ExperimentData::CAMERAS.set_enabled(true)
                         );
                         //发送包
                         factory.send_packet(MinecraftPacket::ResourcePackStack(ResourcePackStack {

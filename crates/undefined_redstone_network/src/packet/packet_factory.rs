@@ -1,19 +1,15 @@
-use tokio::io::AsyncWriteExt;
-use rak_rs::connection::Connection;
-use undefined_redstone_protocol::encryption::MinecraftPacketEncryption;
-use undefined_redstone_protocol::MinecraftPacket;
-use undefined_redstone_protocol::server::Disconnect;
-use undefined_redstone_protocol::skin::Skin;
 use uuid::Uuid;
-use binary_util::ByteWriter;
-use binary_util::interfaces::Writer;
-use rak_rs::protocol::reliability::Reliability;
-use rak_rs::rakrs_debug;
+use rak_rs::connection::Connection;
+use crate::client::MinecraftClientData;
 use crate::client_connection::ClientConnection;
 use crate::packet::batch_packet::BatchPacket;
 use crate::packet::decoder::PackerDecoder;
 use crate::packet::encoder::PackerEncoder;
 use crate::URNetworkSettings;
+use crate::encryption::MinecraftPacketEncryption;
+use crate::protocol::MinecraftPacket;
+use crate::protocol::server::Disconnect;
+use crate::skin::Skin;
 
 pub struct PacketFactoryData {
     pub protocol_version: u32,
@@ -42,6 +38,13 @@ impl PacketFactoryData {
             game_version: String::new(),
             server_address: String::new(),
         }
+    }
+
+    pub fn to_client_data(&self) -> MinecraftClientData {
+        let mut data = MinecraftClientData::default();
+        data.uuid = self.uuid;
+        data.display_name = self.username.clone();
+        data
     }
 }
 
@@ -82,8 +85,8 @@ impl PacketFactory {
     }
 
     pub fn enable_compression(&mut self) {
-        self.decoder.set_compression_algorithm(Some(self.settings.0.compression_algorithm));
-        self.encoder.set_compression_algorithm(Some(self.settings.0.compression_algorithm));
+        self.decoder.set_compression_algorithm(Some(self.settings.compression_algorithm));
+        self.encoder.set_compression_algorithm(Some(self.settings.compression_algorithm));
     }
 
     pub fn disable_compression(&mut self) {
@@ -123,35 +126,11 @@ impl PacketFactory {
     }
 
     pub fn into_client_connection(mut self) -> ClientConnection {
-        let mut sender = self.connection.send_queue.clone();
-
-        let (receive_sender, packet_receiver) = flume::unbounded();
-        let receive_loop = tokio::spawn(async move {
-            loop {
-                if let Ok(packets) = self.recv_packet().await {
-                    let _ = receive_sender.send(packets);
-                }
-            }
-        });
-        let (packet_sender, send_receiver) = flume::unbounded::<(BatchPacket, bool)>();
-        let send_loop = tokio::spawn(async move {
-            loop {
-                if let Ok((packets, immediate)) = send_receiver.recv_async().await {
-                    if let Ok(buffer) = packets.write_to_bytes() {
-                        let buffer = buffer.as_slice();
-                        let mut q = sender.write().await;
-                        let _ = q
-                            .insert(buffer, Reliability::ReliableOrd, immediate, Some(0))
-                            .await;
-                    }
-                }
-            }
-        });
-        ClientConnection {
-            receive_loop,
-            send_loop,
-            packet_receiver,
-            packet_sender,
-        }
+        ClientConnection::new(
+            self.connection,
+            self.encoder,
+            self.decoder,
+            self.encryption,
+        )
     }
 }

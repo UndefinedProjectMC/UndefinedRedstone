@@ -25,6 +25,9 @@ impl URAsyncManager {
     pub fn enter(&self, key: &str) -> Option<EnterGuard<'_>> {
         Some(self.0.get(key)?.runtime.enter())
     }
+    pub fn runtime(&self, key: &str) -> Option<&Runtime> {
+        Some(&self.0.get(key)?.runtime)
+    }
 }
 
 pub(crate) struct URAsyncManagerInner {

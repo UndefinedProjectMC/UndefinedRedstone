@@ -1,4 +1,3 @@
-pub mod entities;
 pub mod utils;
 pub mod server;
 pub mod startup;

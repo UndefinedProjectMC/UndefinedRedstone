@@ -31,8 +31,8 @@ impl ResourcePackZippedLoader {
 
 impl PackLoaderTrait for ResourcePackZippedLoader {
     fn get_resource_packs(&self) -> Vec<ResourcePack> {
+        let mut resource_packs = vec![];
         if let Ok(read_dir) = fs::read_dir(&self.dir_path) {
-            let mut resource_packs = vec![];
             for entry in read_dir {
                 if let Ok(entry) = entry {
                     if let Ok(metadata) = entry.metadata() {
@@ -55,9 +55,7 @@ impl PackLoaderTrait for ResourcePackZippedLoader {
                     }
                 }
             }
-            resource_packs
-        }else {
-            vec![]
         }
+        resource_packs
     }
 }

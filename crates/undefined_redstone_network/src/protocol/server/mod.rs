@@ -1,5 +1,6 @@
 pub mod handshake;
 pub mod resource_packs;
+pub mod login;
 
 use binary_util::BinaryIo;
 
