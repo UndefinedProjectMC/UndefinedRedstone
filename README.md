@@ -11,7 +11,7 @@
   ### English | [简体中文(中国大陆)](README_zh_CN.md) | [正體中文(台灣地區)](README_zh_TW.md) | [Русский](README_ru.md)
 </div>
 
-## 🎉Introduction Undefined Redstone🎉
+## 🎉Introduction🎉
 ### Undefined Redstone is a third-party server software for Minecraft: Bedrock Edition written in Rust Programming Language.
 Undefined Redstone utilized the **ECS (Entity-Component-System)** architecture for coding, while extensively employing asynchronous operations. Thanks to the Plugin System of Bevy ECS, he could easily construct modularly, which has many advantages.
 > [!IMPORTANT]
