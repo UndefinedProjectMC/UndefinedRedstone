@@ -1,6 +1,8 @@
 ![Undefined Redstone Github Page](urgithub.png)
 <h3 align="center">The next-gen Minecraft: Bedrock Edition server software written in Rust Programming Language</h3>
 
+<a href="https://github.com/UndefinedProjectMC/UndefinedRedstone/actions"><img src="https://github.com/UndefinedProjectMC/UndefinedRedstone/actions/workflows/rust.yml/badge.svg" alt="Build"/></a>
+
 ### English | [简体中文(中国大陆)](README_zh_CN.md) | [正體中文(中國台灣)](README_zh_TW.md) | [Русский](README_ru.md)
 
 ## 🎉Introduction Undefined Redstone🎉
