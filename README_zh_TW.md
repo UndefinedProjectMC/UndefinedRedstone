@@ -12,7 +12,7 @@
 </div>
 
 ## 🎉介紹🎉
-### Undefined Redstone 基於Rust程式語言打造的 Minecraft: 基岩版 伺服器軟體
+### Undefined Redstone 是基於Rust程式語言打造的 Minecraft: 基岩版 伺服器軟體
 Undefined Redstone 基於 **ECS (实体-组件-系统)** 架構的同時大量使用多執行緒及非同步，使得伺服器軟體性能優異、程式碼整潔. 得益於Bevy ECS的外掛程式系統，Undefined Redstone 可以轻松进行模組化構建。
 > [!IMPORTANT]
 > 此項目仍然處於非常早期的開發階段，可能會有大量的**未知BUG、漏洞未修復**及**大量的功能未實現**。
