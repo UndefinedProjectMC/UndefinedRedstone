@@ -39,7 +39,7 @@ Undefined Redstone использует архитектуру **ECS (Entity-Com
 
 ## 🎆Начало работы🎆
 #### Undefined Redstone написан на языке Rust, поэтому вам нужно использовать Cargo для сборки.
-[Скачать Rust](https://www.rust-lang.org/en-US/learn/get-started)
+[Скачать Rust](https://www.rust-lang.org/ru/learn/get-started)
 
 **Запустить напрямую**
 ```shell
