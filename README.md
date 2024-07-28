@@ -1,7 +1,7 @@
 ![Undefined Redstone Github Page](urgithub.png)
 <h3 align="center">The next-gen Minecraft: Bedrock Edition server software written in Rust Programming Language</h3>
 
-### English | [简体中文(中国大陆)](README_zh_CN.md) | [正體中文(中國台灣)](README_zh_TW.md) | [繁體中文(中國香港)](README_zh_HK.md)
+### English | [简体中文(中国大陆)](README_zh_CN.md) | [正體中文(中國台灣)](README_zh_TW.md) | [Русский](README_ru.md)
 
 ## 🎉Introduction Undefined Redstone🎉
 ### Undefined Redstone is a third-party server software for Minecraft: Bedrock Edition written in Rust Programming Language.
