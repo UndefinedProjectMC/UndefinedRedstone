@@ -8,7 +8,7 @@
   <a href="https://feedback.minecraft.net/hc/en-us/articles/28105668043661-Minecraft-1-21-2-Bedrock"><img src="https://img.shields.io/badge/minecraft-v1.21.2%20(Bedrock)-green" /></a>
   <a href="https://github.com/UndefinedProjectMC/UndefinedRedstone/tree/main/crates/undefined_redstone_network/src/protocol"><img src="https://img.shields.io/badge/protocol-686-green" /></a>
 
-  ### [English](README.md) | 简体中文(中国大陆) | [正體中文(中國台灣)](README_zh_TW.md) | [Русский](README_ru.md)
+  ### [English](README.md) | 简体中文(中国大陆) | [正體中文(台灣地區)](README_zh_TW.md) | [Русский](README_ru.md)
 </div>
 
 ## 🎉介绍🎉
@@ -28,7 +28,7 @@
   - 你只需要将版本包拖入version_control文件夹中即可自动加载指定版本的生物、物品、配方等。
   - 在将来，我们将进一步支持更高程度的模块化及自定义。
 
-- **ECS架构**：我们紧随Minecraft: Bedrock Edition的脚步，使用了ECS架构对游戏内容进行管理。这使得重复代码更少、内存管理更高效、同时拥有了高度的自定义程度及高度的模块化程度。
+- **ECS架构**：我们紧随 我的世界：基岩版 的脚步，使用了ECS架构对游戏内容进行管理。这使得重复代码更少、内存管理更高效、同时拥有了高度的自定义程度及高度的模块化程度。
 
 - **安全、高性能与低占用三者兼得**：
   - 得益于Rust编程语言，我们将内存安全与高性能带入了 我的世界: 基岩版 服务端软件中。
