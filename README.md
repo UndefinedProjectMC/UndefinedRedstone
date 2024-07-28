@@ -1,12 +1,12 @@
 <div align="center">
-  <a href="https://github.com/UndefinedProjectMC/UndefinedRedstone">
+  <a href="https://github.com/UndefinedProjectMC/Undefined Redstone">
     <img src="urgithub.png" alt="Logo">
   </a>
   <h3 align="center">The next-gen Minecraft: Bedrock Edition server software written in Rust Programming Language</h3>
 
-  <a href="https://github.com/UndefinedProjectMC/UndefinedRedstone/actions"><img     src="https://github.com/UndefinedProjectMC/UndefinedRedstone/actions/workflows/rust.yml/badge.svg" alt="Build"/></a>
+  <a href="https://github.com/UndefinedProjectMC/Undefined Redstone/actions"><img     src="https://github.com/UndefinedProjectMC/Undefined Redstone/actions/workflows/rust.yml/badge.svg" alt="Build"/></a>
   <a href="https://feedback.minecraft.net/hc/en-us/articles/28105668043661-Minecraft-1-21-2-Bedrock"><img src="https://img.shields.io/badge/minecraft-v1.21.2%20(Bedrock)-green" /></a>
-  <a href="https://github.com/UndefinedProjectMC/UndefinedRedstone/tree/main/crates/undefined_redstone_network/src/protocol"><img src="https://img.shields.io/badge/protocol-686-green" /></a>
+  <a href="https://github.com/UndefinedProjectMC/Undefined Redstone/tree/main/crates/undefined_redstone_network/src/protocol"><img src="https://img.shields.io/badge/protocol-686-green" /></a>
 
   ### English | [简体中文(中国大陆)](README_zh_CN.md) | [正體中文(台灣地區)](README_zh_TW.md) | [Русский](README_ru.md)
 </div>
@@ -21,10 +21,10 @@ Undefined Redstone utilized the **ECS (Entity-Component-System)** architecture f
 > 
 > We strongly advise against using this project in a **production environment**, even if certain parts may appear to be complete, until an official release has been issued.
 ## 🎶Features🎶
-- **Modularity**: The meticulously designed modularity of UndefinedRedstone allows developers to easily modify the code.
+- **Modularity**: The meticulously designed modularity of Undefined Redstone allows developers to easily modify the code.
 
 - **Humanized version management**:
-  - Based on the modular design concept, UndefinedRedstone does not specify any Minecraft version.
+  - Based on the modular design concept, Undefined Redstone does not specify any Minecraft version.
   - You only need to drag the version package into the version_control folder to automatically load the specified version's mobs, items, recipes, etc.
   - In the future, we will further support a higher degree of modularity and customization.
 
@@ -37,7 +37,7 @@ Undefined Redstone utilized the **ECS (Entity-Component-System)** architecture f
 - **Extensive support for asynchronous and multi-threading**: We have used a large amount of asynchronous and multi-threading to make the most of multi-core CPUs and reduce performance waste.
 
 ## 🎆Getting Started🎆
-#### UndefinedRedstone is written in Rust language, so you need to use Cargo to build it.
+#### Undefined Redstone is written in Rust language, so you need to use Cargo to build it.
 [Download Rust](https://www.rust-lang.org/en-US/learn/get-started)
 
 **Run directly**
@@ -53,7 +53,7 @@ cargo build --package undefined_redstone_startup --bin undefined_redstone_startu
 ## 👉Feedback👈
 #### We need your help in reporting any bugs or vulnerabilities that you encounter, and we also welcome any suggestions you may have.
 
-[Issues page](https://github.com/UndefinedProjectMC/UndefinedRedstone/issues)
+[Issues page](https://github.com/UndefinedProjectMC/Undefined Redstone/issues)
 
 You are also welcome to join our Discord group or contact us via email at dev@iruanp.com
 
