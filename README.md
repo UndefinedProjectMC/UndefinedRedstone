@@ -4,7 +4,7 @@
   </a>
   <h3 align="center">The next-gen Minecraft: Bedrock Edition server software written in Rust Programming Language</h3>
 
-  <a href="https://github.com/UndefinedProjectMC/Undefined Redstone/actions"><img     src="https://github.com/UndefinedProjectMC/Undefined Redstone/actions/workflows/rust.yml/badge.svg" alt="Build"/></a>
+  <a href="https://github.com/UndefinedProjectMC/UndefinedRedstone/actions"><img src="https://github.com/UndefinedProjectMC/UndefinedRedstone/actions/workflows/rust.yml/badge.svg" alt="Build"/></a>
   <a href="https://feedback.minecraft.net/hc/en-us/articles/28105668043661-Minecraft-1-21-2-Bedrock"><img src="https://img.shields.io/badge/minecraft-v1.21.2%20(Bedrock)-green" /></a>
   <a href="https://github.com/UndefinedProjectMC/Undefined Redstone/tree/main/crates/undefined_redstone_network/src/protocol"><img src="https://img.shields.io/badge/protocol-686-green" /></a>
 
