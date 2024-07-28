@@ -5,8 +5,8 @@ validate_encryption = true
 force_gamemode = false
 
 [game]
-name = "UndefinedRedstore Server"
-motd = "UndefinedRedstore Server"
+name = "UndefinedRedstone Server"
+motd = "UndefinedRedstone Server"
 max_player = 20
 gamemode = "survival"
 ipv4_port = 19132
@@ -19,3 +19,10 @@ upcoming_creator_features = true
 gametest = true
 experimental_molang_features = true
 cameras = true
+
+[world]
+overworld_name = "OverWorld"
+the_nether_name = "TheNether"
+the_end_name = "TheEnd"
+seed = "random"
+generator = "default"
