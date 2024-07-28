@@ -8,7 +8,7 @@
   <a href="https://feedback.minecraft.net/hc/en-us/articles/28105668043661-Minecraft-1-21-2-Bedrock"><img src="https://img.shields.io/badge/minecraft-v1.21.2%20(Bedrock)-green" /></a>
   <a href="https://github.com/UndefinedProjectMC/UndefinedRedstone/tree/main/crates/undefined_redstone_network/src/protocol"><img src="https://img.shields.io/badge/protocol-686-green" /></a>
 
-  ### English | [简体中文(中国大陆)](README_zh_CN.md) | [正體中文(中國台灣)](README_zh_TW.md) | [Русский](README_ru.md)
+  ### English | [简体中文(中国大陆)](README_zh_CN.md) | [正體中文(台灣地區)](README_zh_TW.md) | [Русский](README_ru.md)
 </div>
 
 ## 🎉Introduction Undefined Redstone🎉
