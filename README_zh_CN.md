@@ -61,7 +61,7 @@ cargo build --package undefined_redstone_startup --bin undefined_redstone_startu
 
 **版权所有 © 2024 UndefinedProject，保留所有权利。**
 
-若未特别指明，项目内容均采用LGPL-3.0协议开源。
+若未特别指明，项目内容均采用GPL-3.0协议开源。
 
 以下文件夹内的内容以Apache-2.0协议开源：
 - undefined_redstone_plugin
